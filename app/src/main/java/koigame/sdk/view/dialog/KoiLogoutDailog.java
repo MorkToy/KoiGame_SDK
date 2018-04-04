@@ -1,11 +1,10 @@
-package koigame.sdk.view;
+package koigame.sdk.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -31,19 +30,16 @@ public class KoiLogoutDailog extends Dialog implements View.OnClickListener {
     private OnCloseListener listener;
     private String positiveName;
     private String negativeName;
-    private String title;
 
     public KoiLogoutDailog(Context context) {
         super(context);
         this.mContext = context;
-        Log.i(TAG, "KoiLogoutDailog 1");
     }
 
     public KoiLogoutDailog(Context context, int themeResId, String content) {
         super(context, themeResId);
         this.mContext = context;
         this.content = content;
-        Log.i(TAG, "KoiLogoutDailog 2");
     }
 
     public KoiLogoutDailog(Context context, int themeResId, String content, OnCloseListener listener) {
@@ -51,22 +47,11 @@ public class KoiLogoutDailog extends Dialog implements View.OnClickListener {
         this.mContext = context;
         this.content = content;
         this.listener = listener;
-
-
-
-
-        Log.i(TAG, "KoiLogoutDailog 3");
     }
 
     protected KoiLogoutDailog(Context context, boolean cancelable, OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
         this.mContext = context;
-        Log.i(TAG, "KoiLogoutDailog 4");
-    }
-
-    public KoiLogoutDailog setTitle(String title){
-        this.title = title;
-        return this;
     }
 
     public KoiLogoutDailog setPositiveButton(String name){
@@ -86,7 +71,7 @@ public class KoiLogoutDailog extends Dialog implements View.OnClickListener {
         DisplayMetrics dm = new DisplayMetrics();
         getWindow().getWindowManager().getDefaultDisplay().getMetrics(dm);
         WindowManager.LayoutParams p = getWindow().getAttributes();
-        p.height = (int) (dm.heightPixels * 0.32);
+        p.height = (int) (dm.heightPixels * 0.30);
         p.width = (int) (dm.widthPixels * 0.81);
         setCanceledOnTouchOutside(false);
         initView();
@@ -94,7 +79,6 @@ public class KoiLogoutDailog extends Dialog implements View.OnClickListener {
 
     private void initView(){
         contentTxt = (TextView)findViewById(RUtils.getViewId("content"));
-        titleTxt = (TextView)findViewById(RUtils.getViewId("title"));
         submitTxt = (TextView)findViewById(RUtils.getViewId("submit"));
         cancelTxt = (TextView)findViewById(RUtils.getViewId("cancel"));
 
@@ -109,11 +93,6 @@ public class KoiLogoutDailog extends Dialog implements View.OnClickListener {
         if(!TextUtils.isEmpty(negativeName)){
             cancelTxt.setText(negativeName);
         }
-
-        if(!TextUtils.isEmpty(title)){
-            titleTxt.setText(title);
-        }
-
     }
 
     /*public void dialogCancel(View view) {
@@ -130,17 +109,14 @@ public class KoiLogoutDailog extends Dialog implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Log.i(TAG, "onClick");
         if (view.getId() == RUtils.getViewId("cancel")) {
             if(listener != null){
-                Log.i(TAG, "onClick cancel");
                 listener.onClick(this, false);
             }
             this.dismiss();
         }
         if (view.getId() == RUtils.getViewId("submit")) {
             if(listener != null){
-                Log.i(TAG, "onClick submit");
                 listener.onClick(this, true);
             }
         }

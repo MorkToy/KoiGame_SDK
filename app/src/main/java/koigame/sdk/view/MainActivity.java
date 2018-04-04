@@ -15,8 +15,10 @@ import android.widget.TextView;
 import koigame.sdk.KoiCallback;
 import koigame.sdk.KoiGame;
 import koigame.sdk.bean.user.KUserSession;
+import koigame.sdk.util.AndroidUtils;
 import koigame.sdk.util.RUtils;
 import koigame.sdk.util.bean.PermissionInterface;
+import koigame.sdk.view.dialog.KoiLogoutDailog;
 
 
 public class MainActivity extends Activity implements PermissionInterface {
@@ -69,6 +71,10 @@ public class MainActivity extends Activity implements PermissionInterface {
         KoiGame.logout();
     }
 
+    public void doShowPregress(View view) {
+        AndroidUtils.showCicleProgress(this, "正在加载...");
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -116,13 +122,14 @@ public class MainActivity extends Activity implements PermissionInterface {
                 if (confirm) {
                     KoiGame.logout();
                     finish();
+                    android.os.Process.killProcess(android.os.Process.myPid());
                 } else {
                     dialog.cancel();
                 }
 
             }
         });
-        dailog.setTitle("提示").show();
+        dailog.show();
 
     }
 }

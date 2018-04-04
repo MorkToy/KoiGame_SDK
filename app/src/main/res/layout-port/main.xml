@@ -56,7 +56,15 @@
             android:onClick="doLogout"
             android:text="注销"
             />
-        
-        
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/koi_register_btn_accountlogin_select"
+            android:textColor="@color/koi_btn_blue"
+            android:layout_marginTop="20dp"
+            android:onClick="doShowPregress"
+            android:text="启动进度条"
+            />
 
 </LinearLayout>

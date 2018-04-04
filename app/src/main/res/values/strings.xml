@@ -108,8 +108,9 @@
 
     <string name="koi_system_login_error">操作失败,请稍后再试</string>
 
+    <string name="koi_dialog_tips">请稍等...</string>
+    <string name="koi_dialog_title">提示.</string>
 
-    <string name="link_text">#北京事儿#【[衰]】@老大的二拇脚趾头 ：北京奥体中心，一辆空气净化车对着一个空气监测站一直喷。然而，并没有什么卵用。 @姗姗 ​​​​</string>
-    <string name="title_activity_all_dialog">AllDialogActivity</string>
+
     
 </resources>

@@ -175,12 +175,11 @@ public class KoiUserCenterActivity extends HActivityBase {
             @Override
             public void run() {
                 try {
-                    AndroidUtils.showProgress(KoiUserCenterActivity.this, "",
-                            getResources().getString(RUtils.getStringId("koi_update_input_ing")), false, false, this);
+                    AndroidUtils.showCicleProgress(KoiUserCenterActivity.this, getResources().getString(RUtils.getStringId("koi_update_input_ing")));
 
                     JSONObject props = KWebApiImpl.instance().modifyPassword(accountName, accountType, pwd, newPwd);
 
-                    AndroidUtils.closeProgress(KoiUserCenterActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiUserCenterActivity.this);
 
                     Message msg = new Message();
                     msg.what = FAIL;
@@ -191,7 +190,7 @@ public class KoiUserCenterActivity extends HActivityBase {
                     mHandler.sendMessage(msg);
                 } catch (KServiceException e) {
                     e.printStackTrace();
-                    AndroidUtils.closeProgress(KoiUserCenterActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiUserCenterActivity.this);
                     if (isDestory()) {
                         return;
                     }
@@ -213,12 +212,11 @@ public class KoiUserCenterActivity extends HActivityBase {
             @Override
             public void run() {
                 try {
-                    AndroidUtils.showProgress(KoiUserCenterActivity.this, "",
-                            getResources().getString(RUtils.getStringId("koi_code_send")), false, false, this);
+                    AndroidUtils.showCicleProgress(KoiUserCenterActivity.this, getResources().getString(RUtils.getStringId("koi_code_send")));
 
                     JSONObject props = KWebApiImpl.instance().bindPhoneAccount(signCode, accountName, userId);
 
-                    AndroidUtils.closeProgress(KoiUserCenterActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiUserCenterActivity.this);
 
                     Message msg = new Message();
                     msg.what = FAIL;
@@ -229,7 +227,7 @@ public class KoiUserCenterActivity extends HActivityBase {
                     mHandler.sendMessage(msg);
                 } catch (KServiceException e) {
                     e.printStackTrace();
-                    AndroidUtils.closeProgress(KoiUserCenterActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiUserCenterActivity.this);
                     if (isDestory()) {
                         return;
                     }
@@ -253,12 +251,11 @@ public class KoiUserCenterActivity extends HActivityBase {
             @Override
             public void run() {
                 try {
-                    AndroidUtils.showProgress(KoiUserCenterActivity.this, "",
-                            getResources().getString(RUtils.getStringId("koi_code_send")), false, false, this);
+                    AndroidUtils.showCicleProgress(KoiUserCenterActivity.this, getResources().getString(RUtils.getStringId("koi_code_send")));
 
                     JSONObject props = KWebApiImpl.instance().sendSmsToUser(accountName);
 
-                    AndroidUtils.closeProgress(KoiUserCenterActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiUserCenterActivity.this);
 
                     Message msg = new Message();
                     msg.what = SENDSMSFAIL;
@@ -269,7 +266,7 @@ public class KoiUserCenterActivity extends HActivityBase {
                     mHandler.sendMessage(msg);
                 } catch (KServiceException e) {
                     e.printStackTrace();
-                    AndroidUtils.closeProgress(KoiUserCenterActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiUserCenterActivity.this);
                     if (isDestory()) {
                         return;
                     }
@@ -320,7 +317,7 @@ public class KoiUserCenterActivity extends HActivityBase {
     @Override
     public void initEvent() {
         String accountName = KUserSession.instance().getUserInfo().getAccountName();
-        String phone = KUserSession.instance().getUserInfo().getUserId() + "";
+        String phone = KUserSession.instance().getUserInfo().getBindPhoneNum() + "";
         if (accountName == null || phone.equals("0")) {
             accountName = "未登录";
             phone = "未绑定";

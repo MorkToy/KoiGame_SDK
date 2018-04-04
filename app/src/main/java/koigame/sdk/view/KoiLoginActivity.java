@@ -341,10 +341,10 @@ public class KoiLoginActivity extends HActivityBase {
         KThread progressThread = new KThread() {
             public void run() {
                 try {
-                    AndroidUtils.showProgress(KoiLoginActivity.this, "",
-                            getResources().getString(RUtils.getStringId("koi_hint_fogget_loading")), false, false, this);
+                    AndroidUtils.showCicleProgress(KoiLoginActivity.this, getResources().getString(RUtils.getStringId("koi_hint_fogget_loading")));
+
                     JSONObject props = KWebApiImpl.instance().updatePasswordBySms(signCode, accountName, phoneNum, pwd, accountTyle);
-                    AndroidUtils.closeProgress(KoiLoginActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiLoginActivity.this);
                     if (isDestory()) {
                         return;
                     }
@@ -357,7 +357,7 @@ public class KoiLoginActivity extends HActivityBase {
                     mHandler.sendMessage(msg);
                 } catch (KServiceException e) {
                     e.printStackTrace();
-                    AndroidUtils.closeProgress(KoiLoginActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiLoginActivity.this);
                     if (isDestory()) {
                         return;
                     }
@@ -381,10 +381,9 @@ public class KoiLoginActivity extends HActivityBase {
         KThread progressThread = new KThread() {
             public void run() {
                 try {
-                    AndroidUtils.showProgress(KoiLoginActivity.this, "",
-                            getResources().getString(RUtils.getStringId("koi_login_loading_tip")), false, false, this);
+                    AndroidUtils.showCicleProgress(KoiLoginActivity.this, getResources().getString(RUtils.getStringId("koi_login_loading_tip")));
                     JSONObject props = KWebApiImpl.instance().login(screenName, password, acccountType);
-                    AndroidUtils.closeProgress(KoiLoginActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiLoginActivity.this);
                     if (isDestory()) {
                         return;
                     }
@@ -394,7 +393,7 @@ public class KoiLoginActivity extends HActivityBase {
                     mHandler.sendMessage(msg);
                 } catch (KServiceException e) {
                     e.printStackTrace();
-                    AndroidUtils.closeProgress(KoiLoginActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiLoginActivity.this);
                     if (isDestory()) {
                         return;
                     }
@@ -418,15 +417,14 @@ public class KoiLoginActivity extends HActivityBase {
         KThread progressThread = new KThread() {
             public void run() {
                 try {
-                    AndroidUtils.showProgress(KoiLoginActivity.this, "",
-                            getResources().getString(RUtils.getStringId("koi_register_loading_tip")), false, false, this);
+                    AndroidUtils.showCicleProgress(KoiLoginActivity.this, getResources().getString(RUtils.getStringId("koi_register_loading_tip")));
                     JSONObject props = null;
                     if (StringUtils.isEmpty(signCode)) {
                         props = KWebApiImpl.instance().createAccount(screenName, password);
                     } else {
                         props = KWebApiImpl.instance().createPhoneAccount(screenName, password, signCode);
                     }
-                    AndroidUtils.closeProgress(KoiLoginActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiLoginActivity.this);
                     if (isDestory()) {
                         return;
                     }
@@ -436,7 +434,7 @@ public class KoiLoginActivity extends HActivityBase {
                     mHandler.sendMessage(msg);
                 } catch (KServiceException e) {
                     e.printStackTrace();
-                    AndroidUtils.closeProgress(KoiLoginActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiLoginActivity.this);
                     if (isDestory()) {
                         return;
                     }
@@ -460,12 +458,11 @@ public class KoiLoginActivity extends HActivityBase {
             @Override
             public void run() {
                 try {
-                    AndroidUtils.showProgress(KoiLoginActivity.this, "",
-                            getResources().getString(RUtils.getStringId("koi_code_send")), false, false, this);
+                    AndroidUtils.showCicleProgress(KoiLoginActivity.this, getResources().getString(RUtils.getStringId("koi_code_send")));
 
                     JSONObject props = KWebApiImpl.instance().sendSmsToUser(accountName);
 
-                    AndroidUtils.closeProgress(KoiLoginActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiLoginActivity.this);
 
                     Message msg = new Message();
                     msg.what = SENDSMSFAIL;
@@ -476,7 +473,7 @@ public class KoiLoginActivity extends HActivityBase {
                     mHandler.sendMessage(msg);
                 } catch (KServiceException e) {
                     e.printStackTrace();
-                    AndroidUtils.closeProgress(KoiLoginActivity.this);
+                    AndroidUtils.closeCiclePorgress(KoiLoginActivity.this);
                     if (isDestory()) {
                         return;
                     }
@@ -496,7 +493,7 @@ public class KoiLoginActivity extends HActivityBase {
 
         public void handleMessage(Message msg) {
             try {
-                AndroidUtils.closeProgress(KoiLoginActivity.this);
+                AndroidUtils.closeCiclePorgress(KoiLoginActivity.this);
 
                 switch (msg.what) {
                     case SUCCESS: {

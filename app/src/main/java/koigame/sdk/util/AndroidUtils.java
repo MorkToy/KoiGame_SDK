@@ -32,6 +32,7 @@ import java.util.Properties;
 import java.util.regex.Pattern;
 
 import koigame.sdk.api.KThread;
+import koigame.sdk.view.dialog.KoiWaitDialog;
 
 import static android.content.Context.ACTIVITY_SERVICE;
 
@@ -40,6 +41,8 @@ public class AndroidUtils {
 	private static AndroidUtils instance = new AndroidUtils();
 
 	private static ProgressDialog dialog;
+
+	private static KoiWaitDialog koiWaitDialog;
 
 	private AndroidUtils() {
 
@@ -65,6 +68,31 @@ public class AndroidUtils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void showCicleProgress(final Activity activity, final String message) {
+		activity.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				if (koiWaitDialog != null) {
+					koiWaitDialog.dismiss();
+				}
+				koiWaitDialog = new KoiWaitDialog(activity, RUtils.getStyle("koi_dialog"), message);
+				koiWaitDialog.show();
+			}
+		});
+	}
+
+	public static void closeCiclePorgress(final Activity activity) {
+		activity.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				if (koiWaitDialog != null) {
+					koiWaitDialog.dismiss();
+					koiWaitDialog = null;
+				}
+			}
+		});
 	}
 
 	/**
