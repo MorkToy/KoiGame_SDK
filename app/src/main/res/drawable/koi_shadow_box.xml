@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    
+    <!--<item
+        android:left="2dp"
+        android:top="2dp"
+        >
+        <shape>
+            <solid android:color="@color/koi_hint_tips_gray" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>-->
+
+    <!--<item
+        android:right="10dp"
+        android:bottom="10dp"
+        >
+        <shape>
+            <solid android:color="@color/koi_hint_tips_gray" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>-->
+
+
+    <!-- 前景：：底偏移4dp，右偏移2dp -->
+    <!--<item
+        android:right="2dp"
+        android:bottom="2dp"
+        >
+        <shape>
+            <solid android:color="@color/koi_white" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>-->
+
+
+    <item>
+        <shape>
+
+            <!--填充颜色-->
+            <solid android:color="#ffffffff" />
+
+            <!--边框宽度-->
+            <!--<stroke android:width="3dp" />-->
+
+
+            <!--圆角半径-->
+            <corners android:radius="10dp" />
+
+            <!--内边距-->
+            <padding
+                android:bottom="13dp"
+                android:left="13dp"
+                android:right="13dp"
+                android:top="13dp" />
+        </shape>
+    </item>
+    
+    
+    
+</layer-list>

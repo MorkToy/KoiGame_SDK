@@ -1,0 +1,54 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <dimen name="hl_option_margin_top">15dip</dimen>
+    <dimen name="hl_margin_size">5dip</dimen>
+    <dimen name="hl_portrait_add_text_size">14sp</dimen>
+    <dimen name="hl_option_item_marginLeft">10dip</dimen>
+    <dimen name="hl_tip_text_size">12sp</dimen>
+    <dimen name="hl_title_bar_text_size">18sp</dimen>
+    <dimen name="hl_pay_tip_text_size">16sp</dimen>
+    <dimen name="hl_20">20dip</dimen>
+
+    <style name="Theme_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="hl_btn_0" parent="@android:style/TextAppearance">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/hl_white</item>
+    </style>
+
+    <style name="hl_option_margin_style">
+        <item name="android:layout_marginTop">0dip</item>
+        <item name="android:layout_marginBottom">10dip</item>
+        <item name="android:layout_marginLeft">10dip</item>
+        <item name="android:layout_marginRight">10dip</item>
+    </style>
+
+    <style name="hl_option_item_margin_style">
+        <item name="android:layout_marginTop">5dip</item>
+        <item name="android:layout_marginBottom">5dip</item>
+        <item name="android:layout_marginLeft">5dip</item>
+        <item name="android:layout_marginRight">5dip</item>
+    </style>
+
+    <style name="hl_option_textview_style">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#FF000000</item>
+    </style>
+
+    <!-- 外框 -->
+    <style name="hl_option_margin_padding_style">
+        <item name="android:layout_marginTop">0dip</item>
+        <item name="android:layout_marginBottom">15dip</item>
+        <item name="android:layout_marginLeft">10dip</item>
+        <item name="android:layout_marginRight">10dip</item>
+        <item name="android:paddingTop">10dip</item>
+        <item name="android:paddingBottom">10dip</item>
+        <item name="android:paddingLeft">10dip</item>
+        <item name="android:paddingRight">10dip</item>
+    </style>
+
+</resources>

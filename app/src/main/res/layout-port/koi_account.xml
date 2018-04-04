@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="9dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/koi_tv_comback"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:onClick="comeback"
+            android:text="@string/koi_comeback"
+            android:textColor="@color/koi_btn_blue"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:src="@drawable/koi_logo" />
+
+            <TextView
+                android:id="@+id/koi_account_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:layout_marginTop="3dp"
+                android:text="账号"
+                android:textColor="#163953"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- 开始内容布局 start -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <!-- 开始主界面布局 start -->
+
+        <LinearLayout
+            android:id="@+id/koi_layout_accountsystem_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/koi_main_btn_quick_login"
+                    android:onClick="quickRegister" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/koi_account_quicklogin"
+                    android:textColor="#FAB401" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/koi_main_btn_register"
+                    android:onClick="normalRigsiter" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/koi_account_register"
+                    android:textColor="#DC4651" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/koi_main_btn_login_normal"
+                    android:onClick="loginAccount" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/koi_account_loginnormal"
+                    android:textColor="@color/koi_btn_blue" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 结束主界面布局 end -->
+
+
+        <!-- 账号快速注册start -->
+        <LinearLayout
+            android:id="@+id/koi_layout_quickregister_main"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/koi_edt_quick_account"
+                style="@style/koi_edittext_account"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/koi_btnquickregister" />
+
+            <EditText
+                android:id="@+id/koi_edt_quick_pwd"
+                style="@style/koi_edittext_pwd"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/koi_hint_accountpwd_tips" />
+
+            <Button
+                android:layout_width="260dp"
+                android:layout_height="41dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/koi_register_btn_phonelogin_select"
+                android:onClick="quickRegisterCommit"
+                android:text="@string/koi_btn_sendregister"
+                android:textColor="@android:color/background_light"
+                android:textSize="16sp" />
+        </LinearLayout>
+        <!-- 账号快速注册end -->
+
+
+        <!-- 注册账号选择页面start -->
+        <LinearLayout
+            android:id="@+id/koi_layout_register_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <Button
+                android:layout_width="260dp"
+                android:layout_height="45dp"
+                android:background="@drawable/koi_register_btn_phonelogin_select"
+                android:onClick="phoneRegister"
+                android:text="@string/koi_btn_phone_register"
+                android:textColor="@android:color/background_light"
+                android:textSize="18sp" />
+
+            <Button
+                android:layout_width="260dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/koi_register_btn_accountlogin_select"
+                android:onClick="accountRegister"
+                android:text="@string/koi_btn_account_register"
+                android:textColor="@color/koi_btn_blue"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <!-- 注册账号选择页面end -->
+
+
+        <!-- 手机注册第一步start -->
+        <LinearLayout
+            android:id="@+id/koi_layout_phoneregister_step1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/koi_text_phone_title"
+                android:textColor="@color/koi_btn_blue"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/koi_edt_phAccount"
+                style="@style/koi_edittext_account"
+                android:layout_width="260dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:inputType="number"
+                android:hint="@string/koi_text_phone_tips" />
+
+            <Button
+                android:layout_width="260dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/koi_register_btn_phonelogin_select"
+                android:onClick="sendPhoneCode"
+                android:text="@string/koi_btn_send_phonecode"
+                android:textColor="@android:color/background_light"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <!-- 手机注册第一步end -->
+
+
+        <!-- 手机注册第二步start -->
+
+        <LinearLayout
+            android:id="@+id/koi_layout_phoneregister_step2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+
+            <EditText
+                android:id="@+id/koi_edt_phoneReg_num"
+                style="@style/koi_edittext_account"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:inputType="number"
+                android:hint="@string/koi_text_inputphonenum"
+                android:textSize="16sp" />
+
+
+            <LinearLayout
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/koi_edt_checkReg_code"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="7"
+                    android:background="@drawable/koi_phone_register_step1_shape"
+                    android:hint="@string/koi_text_inputcheckcode"
+                    android:maxLength="7"
+                    android:singleLine="true"
+                    android:textColorHint="@color/koi_hint_text"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/koi_btn_resendreg"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="3"
+                    android:background="@drawable/koi_register_btn_accountlogin_select"
+                    android:onClick="reSendCode"
+                    android:text="@string/koi_text_resendcode"
+                    android:textColor="@color/koi_btn_blue"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/koi_edt_phoneReg_pwd"
+                style="@style/koi_edittext_pwd"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/koi_text_inputpwd" />
+
+            <Button
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/koi_register_btn_phonelogin_select"
+                android:onClick="phoneRegisterCommit"
+                android:text="@string/koi_btn_sendregister"
+                android:textColor="@android:color/background_light"
+                android:textSize="16sp" />
+        </LinearLayout>
+        <!-- 手机注册第二步end -->
+
+
+        <!-- 账号注册start -->
+        <LinearLayout
+            android:id="@+id/koi_layout_register"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/koi_edt_normalReg_name"
+                style="@style/koi_edittext_account"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/koi_hint_accountregister_tips" />
+
+            <EditText
+                android:id="@+id/koi_edt_normalReg_pwd"
+                style="@style/koi_edittext_pwd"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/koi_hint_accountpwd_tips" />
+
+            <EditText
+                android:id="@+id/koi_edt_normalReg_repwd"
+                style="@style/koi_edittext_pwd"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/koi_hint_accountrepeat_tips" />
+
+            <Button
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/koi_register_btn_phonelogin_select"
+                android:onClick="normalRigsiterCommit"
+                android:text="@string/koi_btn_sendregister"
+                android:textColor="@android:color/background_light"
+                android:textSize="16sp" />
+        </LinearLayout>
+        <!-- 账号注册end -->
+
+
+        <!-- 账号登录start -->
+
+        <LinearLayout
+            android:id="@+id/koi_layout_login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/koi_edt_login_name"
+                style="@style/koi_edittext_account"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/koi_hint_inputlogin_phonenum" />
+
+            <EditText
+                android:id="@+id/koi_edt_login_pwd"
+                style="@style/koi_edittext_pwd"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/koi_hint_inputlogin_pwd" />
+
+            <Button
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/koi_register_btn_phonelogin_select"
+                android:onClick="loginCommit"
+                android:text="@string/koi_btn_commitlogin"
+                android:textColor="@android:color/background_light"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="10dp"
+                android:onClick="forgetPwd"
+                android:text="@string/koi_text_fogetpwd"
+                android:textColor="@color/koi_btn_blue"
+                android:textSize="16dp" />
+        </LinearLayout>
+        <!-- 账号登录end -->
+
+
+        <!-- 忘记密码start -->
+        <LinearLayout
+            android:id="@+id/koi_layout_fogetpwd"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/koi_edt_forget_name"
+                style="@style/koi_edittext_account"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/koi_hint_foggetaccount" />
+
+            <EditText
+                android:id="@+id/koi_edt_forget_phone"
+                style="@style/koi_edittext_account"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:inputType="number"
+                android:hint="@string/koi_hint_foggetphonenum" />
+
+            <LinearLayout
+                android:layout_width="260dp"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/koi_edt_forget_code"
+                    style="@style/koi_edittext_account"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="6"
+                    android:hint="@string/koi_text_inputcheckcode"
+                    android:maxLength="7" />
+
+                <Button
+                    android:id="@+id/koi_btn_forget_send"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/koi_register_btn_accountlogin_select"
+                    android:text="@string/koi_hint_fogget_sendsms"
+                    android:onClick="forgetPwdSend"
+                    android:textColor="@color/koi_btn_blue"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/koi_edt_forget_newpwd"
+                style="@style/koi_edittext_pwd"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/koi_hint_fogget_newpwd" />
+
+            <Button
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/koi_register_btn_phonelogin_select"
+                android:text="@string/koi_hint_fogget_commit"
+                android:onClick="forgetPwdCommit"
+                android:textColor="@android:color/background_light"
+                android:textSize="17sp" />
+        </LinearLayout>
+        <!-- 忘记密码end -->
+
+    </RelativeLayout>
+
+</LinearLayout>

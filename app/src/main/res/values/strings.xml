@@ -1,0 +1,115 @@
+<resources>
+
+    <string name="koi_system_error">亲，系统好像发生了异常，请稍后重试！</string>s
+
+    <string name="app_name">KOI SDK</string>
+    <string name="koi_account_quicklogin">快速登录</string>
+	<string name="koi_account_loginnormal">已有账号</string>
+	<string name="koi_account_register">注册账号</string>
+	<string name="koi_btn_phone_register">手机注册</string>
+	<string name="koi_btn_account_register">账号注册</string>
+	<string name="koi_text_phone_title">中国大陆</string>
+	<string name="koi_text_phone_tips">请输入您的手机号码</string>
+	<string name="koi_btn_send_phonecode">发送验证码</string>
+	<string name="koi_text_inputaccount">请输入您的账号</string>
+	<string name="koi_text_inputphonenum">请输入您的手机号码</string>
+	<string name="koi_text_inputcheckcode">请输入验证码</string>
+	<string name="koi_text_inputpwd">请输入您的密码</string>
+	<string name="koi_text_registerphone">注册手机号：</string>
+    <string name="koi_text_phoneNum">13671886406</string>
+	<string name="koi_text_resendcode">发送</string>
+	<string name="koi_btn_sendregister">注 册</string>
+	<string name="koi_btnquickregister">koi2018589</string>
+	<string name="koi_comeback">&lt;</string>
+
+    <!-- 快速注册和登录 -->
+    <string name="koi_login_username_empty">请输入账号！</string>
+    <string name="koi_login_password_empty">请输入密码！</string>
+    <string name="koi_login_account_not_found">用户名错误！</string>
+    <string name="koi_login_pwd_unright">密码错误！</string>
+    <string name="koi_login_loading_tip">正在登录…</string>
+    <string name="koi_register_usn_check">账号应为6–16位，字母和数字组成</string>
+    <string name="koi_register_pwd_check">密码应为6–16位，字母或数字组成</string>
+    <string name="koi_account_has_error_words">包含非法字符</string>
+    <string name="koi_register_loading_tip">正在注册…</string>
+    <string name="koi_text_sendsms_error">短信发送失败,请稍后再试</string>
+    <string name="koi_text_sendsms_success">短信发送成功</string>
+	
+	<!-- 账号注册 -->
+	<string name="koi_hint_accountregister_tips">请输入账号(不能为手机/邮箱)</string>
+	<string name="koi_hint_accountpwd_tips">请输入您的密码</string>
+	<string name="koi_hint_accountrepeat_tips">请再次确认您的密码</string>
+	
+	<!-- 账号注册 -->
+	<string name="koi_hint_inputlogin_phonenum">请输入您的账号/手机号</string>
+	<string name="koi_hint_inputlogin_pwd">请输入您的密码</string>
+	<string name="koi_btn_commitlogin">确认登录</string>
+	<string name="koi_text_fogetpwd">忘记密码 ></string>
+    <string name="koi_code_send">手机验证码已发送</string>
+    <string name="koi_pwd_cannot_null">验证码不能为空</string>
+    <string name="koi_pwd_repeat_error">密码不一致</string>
+    <string name="koi_text_phonenum_error">手机格式错误</string>
+    <string name="koi_text_account_error">账号格式错误</string>
+	
+	<!-- 忘记密码 -->
+    <string name="koi_hint_foggetaccount">请输入您的账号</string>
+    <string name="koi_hint_foggetphonenum">请输入注册的手机号</string>
+    <string name="koi_hint_foggetcheckcode">请输入您的手机验证码</string>
+    <string name="koi_hint_fogget_newpwd">请输入新的密码</string>
+    <string name="koi_hint_fogget_sendsms">发送验证</string>
+    <string name="koi_hint_fogget_commit">确认修改</string>
+    <string name="koi_hint_fogget_loading">正在修改</string>
+    <string name="koi_hint_fogget_success">密码修改成功</string>
+    
+    <!-- 用户中心 -->
+    <string name="koi_center_title">用户中心</string>
+    <string name="koi_center_accountname">账号：%1$s</string>
+    <string name="koi_center_bindphone">绑定手机：%1$s</string>
+    <string name="koi_center_bound">已绑</string>
+    <string name="koi_center_unbind">绑定</string>
+    <string name="koi_center_btn_updatepwd">修改\n密码</string>
+    <string name="koi_center_btn_checkidcard">实名\n认证</string>
+    <string name="koi_center_btn_switchaccount">切换\n账号</string>
+    <string name="koi_center_relogin">请重新登录</string>
+    <string name="koi_center_bindsuccess">请重新登录</string>
+    
+    <!-- 实名认证 -->
+    <string name="koi_check_input_realname">请输入您的真实姓名</string>
+    <string name="koi_check_input_idcard">请输入您的身份证号码</string>
+    <string name="koi_check_btn_commit">提交认证</string>
+    
+    <!-- 手机绑定 -->
+    <string name="koi_bind_input_phonenum">请输入手机号</string>
+    <string name="koi_bind_input_checkcode">请输入验证码</string>
+    <string name="koi_bind_input_pwd">请输入您的密码</string>
+    <string name="koi_bind_btn_pwd">确认绑定</string>
+    
+    <!-- 修改密码 -->
+    <string name="koi_update_input_oldpwd">请输入您的旧密码</string>
+    <string name="koi_update_input_newpwd">请输入您的新密码</string>
+    <string name="koi_update_input_repeat">请再次确认您的新密码</string>
+    <string name="koi_update_input_commit">确认修改</string>
+    <string name="koi_update_input_noempty">密码不能为空</string>
+    <string name="koi_update_input_ing">密码正在修改</string>
+    <string name="koi_update_input_success">密码修改成功</string>
+    
+    <!-- 支付系统 -->
+    <string name="koi_payment_title">支付</string>
+    <string name="koi_payment_payname">支付：￥6</string>
+    <string name="koi_payment_content">购买内容：60钻石</string>
+    <string name="koi_payment_wechatpay">微 信 支 付</string>
+    <string name="koi_payment_alipay">支付宝支付</string>
+    
+    <string name="koi_payment_success">支付成功</string>
+    <string name="koi_payment_error">支付失败</string>
+    <string name="koi_payment_error_desc">失败原因：取消支付</string>
+    <string name="koi_payment_returngame">返回游戏</string>
+
+
+    <string name="koi_system_login_error">操作失败,请稍后再试</string>
+
+
+    <string name="link_text">#北京事儿#【[衰]】@老大的二拇脚趾头 ：北京奥体中心，一辆空气净化车对着一个空气监测站一直喷。然而，并没有什么卵用。 @姗姗 ​​​​</string>
+    <string name="title_activity_all_dialog">AllDialogActivity</string>
+    
+</resources>

@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 头部logo start -->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="9dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/koi_tv_comback"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:onClick="comeback"
+            android:text="@string/koi_comeback"
+            android:textColor="@color/koi_btn_blue"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:src="@drawable/koi_logo" />
+
+            <TextView
+                android:id="@+id/koi_account_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:layout_marginTop="3dp"
+                android:text="@string/koi_center_title"
+                android:textColor="#163953"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+    <!-- 头部logo end -->
+
+    <RelativeLayout
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <!-- 主页 start -->
+        <LinearLayout
+            android:id="@+id/koi_main_layout"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/koi_tv_center_bind_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="@string/koi_center_accountname"
+                android:textColor="@color/koi_btn_blue"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/koi_tv_center_bind_phonenum"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/koi_center_bindphone"
+                    android:textColor="@color/koi_btn_blue"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/koi_btn_center_bind"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/koi_register_btn_accountlogin_select"
+                    android:onClick="bindPhoneNum"
+                    android:text="@string/koi_center_unbind"
+                    android:textColor="@color/koi_btn_blue"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="26dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/koi_center_btn_updatepwd_shape"
+                    android:text="@string/koi_center_btn_updatepwd"
+                    android:onClick="btnUpdatePwd"
+                    android:textColor="@color/koi_text_yellow" />
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="25dp"
+                    android:background="@drawable/koi_center_btn_checkidcard_shape"
+                    android:text="@string/koi_center_btn_checkidcard"
+                    android:onClick="btnCheckIdcard"
+                    android:textColor="@color/koi_text_red" />
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="25dp"
+                    android:background="@drawable/koi_center_btn_switchaccount_shape"
+                    android:text="@string/koi_center_btn_switchaccount"
+                    android:textColor="@color/koi_bg_blue" />
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 主页 end -->
+
+        <!-- 实名认证  start -->
+        <LinearLayout
+            android:id="@+id/koi_layout_check_idcard"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <EditText
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                style="@style/koi_edittext_account"
+                android:background="@drawable/koi_phone_register_step1_shape"
+                android:hint="@string/koi_check_input_realname" />
+
+            <EditText
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                style="@style/koi_edittext_account"
+                android:background="@drawable/koi_phone_register_step1_shape"
+                android:hint="@string/koi_check_input_idcard"
+                android:maxLength="18" />
+
+            <Button
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/koi_register_btn_phonelogin_select"
+                android:text="@string/koi_check_btn_commit"
+                android:textColor="@android:color/background_light"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+        <!-- 实名认证  end -->
+
+        <!-- 手机绑定 start -->
+        <LinearLayout
+            android:id="@+id/koi_ly_center_bindnum"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/koi_edt_center_phonenum"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:inputType="number"
+                style="@style/koi_edittext_account"
+                android:background="@drawable/koi_phone_register_step1_shape"
+                android:hint="@string/koi_bind_input_phonenum" />
+
+            <LinearLayout
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/koi_edt_center_checkcode"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="6"
+                    style="@style/koi_edittext_account"
+                    android:background="@drawable/koi_phone_register_step1_shape"
+                    android:hint="@string/koi_bind_input_checkcode"
+                    android:maxLength="7" />
+
+                <Button
+                    android:id="@+id/koi_btn_center_sent"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/koi_register_btn_accountlogin_select"
+                    android:text="@string/koi_hint_fogget_sendsms"
+                    android:onClick="centerSendSms"
+                    android:textColor="@color/koi_btn_blue"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/koi_edt_center_pwd"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                style="@style/koi_edittext_pwd"
+                android:background="@drawable/koi_phone_register_step1_shape"
+                android:hint="@string/koi_bind_input_pwd" />
+
+            <Button
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/koi_register_btn_phonelogin_select"
+                android:text="@string/koi_bind_btn_pwd"
+                android:onClick="centerBindCommit"
+                android:textColor="@android:color/background_light"
+                android:textSize="15sp" />
+        </LinearLayout>
+        <!-- 手机绑定 end -->
+
+        <!-- 修改密码 start -->
+        <LinearLayout
+            android:id="@+id/koi_layout_update_pwd"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/koi_edt_center_oldpwd"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                style="@style/koi_edittext_account"
+                android:background="@drawable/koi_phone_register_step1_shape"
+                android:hint="@string/koi_update_input_oldpwd" />
+
+            <EditText
+                android:id="@+id/koi_edt_center_newpwd"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                style="@style/koi_edittext_pwd"
+                android:background="@drawable/koi_phone_register_step1_shape"
+                android:hint="@string/koi_update_input_newpwd"
+                android:maxLength="16" />
+
+            <EditText
+                android:id="@+id/koi_edt_center_re_newpwd"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                style="@style/koi_edittext_pwd"
+                android:background="@drawable/koi_phone_register_step1_shape"
+                android:hint="@string/koi_update_input_repeat"
+                android:maxLength="16" />
+
+            <Button
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/koi_register_btn_phonelogin_select"
+                android:text="@string/koi_update_input_commit"
+                android:onClick="centerUpdatePwdCommit"
+                android:textColor="@android:color/background_light"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+        <!-- 修改密码 end -->
+
+    </RelativeLayout>
+</LinearLayout>

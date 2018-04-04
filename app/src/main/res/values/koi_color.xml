@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="koi_white">#FFFFFF</color>
+
+    <color name="koi_btn_blue">#599EC7</color>
+
+    <color name="koi_btn_press_blue">#4682B4</color>
+
+    <color name="koi_btn_press_white">#B0C4DE</color>
+
+    <color name="koi_btn_phone_edt">#E9E9E9</color>
+
+    <color name="koi_btn_yellow">#FFEB6E</color>
+
+    <color name="koi_btn_red">#FF818A</color>
+
+    <color name="koi_text_yellow">#FAB401</color>
+
+    <color name="koi_text_red">#DC4651</color>
+
+    <color name="koi_bg_blue">#1E6F95</color>
+
+    <color name="koi_txt_green">#66C77F</color>
+
+    <color name="koi_error_red">#CD2830</color>
+
+    <color name="koi_hint_tips_gray">#B9B9B9</color>
+
+    <color name="koi_hint_text">#C0C0C0</color>
+
+    <color name="koi_bg_press_gray">#F5F5F5</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="mainColor">#573567</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="font_gray_b">#d4d4d3</color>
+
+    <color name="font_tab_1">#42369a</color>
+    <color name="font_tab_0">#b1b1b1</color>
+
+
+    <color name="font_common_1">#424242</color>
+    <color name="font_common_2">#a1a1a1</color>
+    <color name="font_blue">#42369a</color>
+
+    <color name="font_green">#00cccc</color>
+
+    <color name="commom_background">#f3f3f3</color>
+
+</resources>
