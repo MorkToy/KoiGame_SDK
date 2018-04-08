@@ -1,6 +1,8 @@
 package koigame.sdk.view;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 
 import org.json.JSONObject;
 
+import koigame.sdk.KoiGame;
 import koigame.sdk.api.KServiceException;
 import koigame.sdk.api.KThread;
 import koigame.sdk.api.KWebApiImpl;
@@ -25,6 +28,7 @@ import koigame.sdk.util.JSONUtils;
 import koigame.sdk.util.NumberUtils;
 import koigame.sdk.util.RUtils;
 import koigame.sdk.util.StringUtils;
+import koigame.sdk.view.dialog.KoiLogoutDailog;
 
 /**
  * Created by wudi .
@@ -56,6 +60,7 @@ public class KoiUserCenterActivity extends HActivityBase {
     private LinearLayout koi_layout_check_idcard;
     private EditText koi_edt_center_check_realname;
     private EditText koi_edt_center_check_idcard;
+    private Button koi_btn_center_bindidcard;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -110,6 +115,28 @@ public class KoiUserCenterActivity extends HActivityBase {
      */
     public void btnCheckIdcard(View view) {
         switchAnim(koi_main_layout, koi_layout_check_idcard);
+    }
+
+    /**
+     * 切换账号.
+     * @param view 点击事件.
+     */
+    public void btnLogout(View view) {
+        KoiLogoutDailog dailog = new KoiLogoutDailog(this, RUtils.getStyle("koi_dialog"), "是否要切换账号?", new KoiLogoutDailog.OnCloseListener() {
+            @Override
+            public void onClick(Dialog dialog, boolean confirm) {
+                if (confirm) {
+                    KoiGame.logout();
+                    Intent intent = new Intent(KoiUserCenterActivity.this, KoiLoginActivity.class);
+                    KoiUserCenterActivity.this.startActivity(intent);
+                    KoiUserCenterActivity.this.finish();
+                } else {
+                    dialog.cancel();
+                }
+
+            }
+        });
+        dailog.show();
     }
 
     /**
@@ -362,6 +389,7 @@ public class KoiUserCenterActivity extends HActivityBase {
         koi_tv_comback = (TextView) findViewById(RUtils.getViewId("koi_tv_comback"));
         koi_ly_center_bindnum = (LinearLayout) findViewById(RUtils.getViewId("koi_ly_center_bindnum"));
         koi_btn_center_sent = (Button) findViewById(RUtils.getViewId("koi_btn_center_sent"));
+        koi_btn_center_bindidcard = (Button)findViewById(RUtils.getViewId("koi_btn_center_bindidcard"));
 
         //绑定手机号
         koi_edt_center_phonenum = (EditText) findViewById(RUtils.getViewId("koi_edt_center_phonenum"));
@@ -386,7 +414,7 @@ public class KoiUserCenterActivity extends HActivityBase {
     public void initEvent() {
         String accountName = KUserSession.instance().getUserInfo().getAccountName();
         String phone = KUserSession.instance().getUserInfo().getBindPhoneNum() + "";
-        if (accountName == null || phone.equals("0")) {
+        if (accountName == null || "0".equals(phone)) {
             accountName = "未登录";
             phone = "未绑定";
             koi_btn_center_bind.setClickable(true);
@@ -400,6 +428,13 @@ public class KoiUserCenterActivity extends HActivityBase {
         }
         koi_tv_center_bind_account.setText(getResources().getString(RUtils.getStringId("koi_center_accountname"), accountName));
         koi_tv_center_bind_phonenum.setText(getResources().getString(RUtils.getStringId("koi_center_bindphone"), phone));
+
+        String idCard = KUserSession.instance().getUserInfo().getBindIdCard();
+        Log.i(TAG, "idCard = " + idCard);
+        if (!StringUtils.isEmpty(idCard) || !"0".equals(idCard)) {
+            Log.i(TAG, "idCardedede = " + idCard);
+            koi_btn_center_bindidcard.setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -521,7 +556,7 @@ public class KoiUserCenterActivity extends HActivityBase {
                     }
                     case CHECKSUCCESS: {
                         AndroidUtils.showToast(KoiUserCenterActivity.this, getResources().getString(RUtils.getStringId("koi_check_idcard_success")), 1);
-                        comeback(null);
+                        KoiUserCenterActivity.this.finish();
                         break;
                     }
                 }

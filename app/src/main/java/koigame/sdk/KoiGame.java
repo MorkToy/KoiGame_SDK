@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import koigame.sdk.game.KGamePrice;
 import koigame.sdk.game.KGameProxy;
 import koigame.sdk.util.AndroidUtils;
 import koigame.sdk.util.PreferenceUtils;
+import koigame.sdk.util.RUtils;
 import koigame.sdk.util.StringUtils;
 import koigame.sdk.view.KoiLoginActivity;
 import koigame.sdk.view.KoiPayActivity;
@@ -155,19 +157,16 @@ public class KoiGame {
 				public void run() {
 					// TODO Auto-generated method stub
 					try {
-						AndroidUtils.showProgress(
-								activity,
-								"",
-								activity.getResources().getString(
-										R.string.hl_login_loading_tip), false,
-								false, this);
+						AndroidUtils.showAutologinProgress(activity);
+
+						SystemClock.sleep(3000);
 
 						JSONObject props = KWebApiImpl.instance()
 								.loginWithToken(accountName, accessToken, refreshToken);
 
 
 
-						AndroidUtils.closeProgress(activity);
+						AndroidUtils.closeAutologinPorgress(activity);
 						if (isDestory()) { // 已被用户停止
 							return;
 						}

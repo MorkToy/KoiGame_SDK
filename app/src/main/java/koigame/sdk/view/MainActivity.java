@@ -130,6 +130,5 @@ public class MainActivity extends Activity implements PermissionInterface {
             }
         });
         dailog.show();
-
     }
 }

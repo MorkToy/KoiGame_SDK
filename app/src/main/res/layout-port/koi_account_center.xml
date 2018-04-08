@@ -112,6 +112,7 @@
                     android:textColor="@color/koi_text_yellow" />
 
                 <Button
+                    android:id="@+id/koi_btn_center_bindidcard"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="25dp"
@@ -126,6 +127,7 @@
                     android:layout_marginLeft="25dp"
                     android:background="@drawable/koi_center_btn_switchaccount_shape"
                     android:text="@string/koi_center_btn_switchaccount"
+                    android:onClick="btnLogout"
                     android:textColor="@color/koi_bg_blue" />
             </LinearLayout>
         </LinearLayout>

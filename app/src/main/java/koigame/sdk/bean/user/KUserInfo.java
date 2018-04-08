@@ -19,6 +19,7 @@ public class KUserInfo {
 	public final static String GAMEAREAROLEVO = "gameAreaRoleVo";
 	public final static String ACCOUNT_ID = "accountId";
 	public final static String PHONENUM = "bindPhoneNum";
+	public final static String IDCARD = "bindIdcard";
 
 	private long userId;
 	private int SiteId;
@@ -34,7 +35,7 @@ public class KUserInfo {
 	private String accessToken;
 	private String roleName;
 	private String bindPhoneNum;
-
+	private String bindIdCard;
 
 	private String roleId = "";
 	private int roleLevel;
@@ -45,6 +46,7 @@ public class KUserInfo {
 	private String areaName;
 	private int gem;
 	private int gold;
+
 	private JSONObject dataJson;
 
 	public KUserInfo() {
@@ -60,6 +62,7 @@ public class KUserInfo {
 		gameAreaRoleVo = JSONUtils.getString(dataJson, GAMEAREAROLEVO);
 		accessToken = JSONUtils.getString(dataJson, ACCESS_TOKEN);
 		bindPhoneNum = JSONUtils.getString(dataJson, PHONENUM);
+		bindIdCard = JSONUtils.getString(dataJson, IDCARD);
 		accountId = (int)userId;
 	}
 
@@ -247,5 +250,13 @@ public class KUserInfo {
 
 	public void setBindPhoneNum(String bindPhoneNum) {
 		this.bindPhoneNum = bindPhoneNum;
+	}
+
+	public String getBindIdCard() {
+		return bindIdCard;
+	}
+
+	public void setBindIdCard(String bindIdCard) {
+		this.bindIdCard = bindIdCard;
 	}
 }

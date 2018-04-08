@@ -109,12 +109,11 @@
     <string name="koi_payment_error_desc">失败原因：取消支付</string>
     <string name="koi_payment_returngame">返回游戏</string>
 
-
+    <!-- 系统提示 -->
     <string name="koi_system_login_error">操作失败,请稍后再试</string>
+    <string name="koi_system_switch_account">切换账号</string>
 
     <string name="koi_dialog_tips">请稍等...</string>
     <string name="koi_dialog_title">提示.</string>
 
-
-    
 </resources>

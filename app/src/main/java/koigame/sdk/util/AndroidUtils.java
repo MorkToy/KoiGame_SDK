@@ -32,6 +32,7 @@ import java.util.Properties;
 import java.util.regex.Pattern;
 
 import koigame.sdk.api.KThread;
+import koigame.sdk.view.dialog.KoiAutoLoginDialog;
 import koigame.sdk.view.dialog.KoiWaitDialog;
 
 import static android.content.Context.ACTIVITY_SERVICE;
@@ -43,6 +44,10 @@ public class AndroidUtils {
 	private static ProgressDialog dialog;
 
 	private static KoiWaitDialog koiWaitDialog;
+
+	private static KoiAutoLoginDialog koiAutoLoginDialog;
+
+
 
 	private AndroidUtils() {
 
@@ -68,6 +73,31 @@ public class AndroidUtils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void showAutologinProgress(final Activity activity) {
+		activity.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				if (koiAutoLoginDialog != null) {
+					koiAutoLoginDialog.dismiss();
+				}
+				koiAutoLoginDialog = new KoiAutoLoginDialog(activity, RUtils.getStyle("koi_dialog"));
+				koiAutoLoginDialog.show();
+			}
+		});
+	}
+
+	public static void closeAutologinPorgress(final Activity activity) {
+		activity.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				if (koiAutoLoginDialog != null) {
+					koiAutoLoginDialog.dismiss();
+					koiAutoLoginDialog = null;
+				}
+			}
+		});
 	}
 
 	public static void showCicleProgress(final Activity activity, final String message) {
