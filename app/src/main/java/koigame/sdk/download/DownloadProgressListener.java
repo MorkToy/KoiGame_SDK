@@ -1,1 +1,0 @@
-package koigame.sdk.download;public interface DownloadProgressListener {	public void onDownloadSize(int size);		/**	 * 下载失败	 */	public void onDownloadFailed();}

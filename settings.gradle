@@ -1,1 +1,1 @@
-include ':app', ':koigame_demo'
+include ':Koi_SDK', ':Koi_Demo', ':Koi_Platform_Shell'
