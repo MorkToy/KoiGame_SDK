@@ -12,7 +12,6 @@ public class KoiApplication extends Application {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-		RUtils.init(getPackageName() + ".R");
-		Log.i("koiapplication", "packagename: " + getPackageName() + ".R");
+
 	}
 }

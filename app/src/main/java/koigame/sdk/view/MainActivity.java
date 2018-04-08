@@ -42,6 +42,7 @@ public class MainActivity extends Activity implements PermissionInterface {
         KoiGame.login(this, new KoiCallback.LoginCallback() {
             @Override
             public void onSuccess(String uid, String accessToken) {
+                AndroidUtils.showToast(MainActivity.this, "登录成功" , 1);
                 koi_tv_accountname.setText("账号：" + KUserSession.instance().getUserInfo().getAccountName() + ",userId = " + uid);
             }
 
@@ -63,8 +64,7 @@ public class MainActivity extends Activity implements PermissionInterface {
     }
 
     public void doCenter(View view) {
-        Intent intent = new Intent(this, KoiUserCenterActivity.class);
-        startActivity(intent);
+        KoiGame.memberCenter(this);
     }
 
     public void doLogout(View view) {

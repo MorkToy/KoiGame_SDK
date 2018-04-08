@@ -30,6 +30,7 @@ import koigame.sdk.util.RUtils;
 import koigame.sdk.util.StringUtils;
 import koigame.sdk.view.KoiLoginActivity;
 import koigame.sdk.view.KoiPayActivity;
+import koigame.sdk.view.KoiUserCenterActivity;
 
 
 public class KoiGame {
@@ -52,6 +53,7 @@ public class KoiGame {
 		PreferenceUtils.instance(context);
 		KMetaData.init(context);
 		KUserSession.instance().init(context);
+		RUtils.init(context.getPackageName() + ".R");
 		KConstant.URL = "http://" + KConstant.PLATFORM_HOST + ":"
 				+ KConstant.PLATFORM_PORT+"/platform";
 		KConstant.PAY_URL = "http://" + KConstant.PLATFORM_HOST + ":"
@@ -316,10 +318,10 @@ public class KoiGame {
 	 * @param activity
 	 *            当前activity
 	 */
-	/*public static void memberCenter(final Activity activity) {
-		Intent intent = new Intent(activity, HilinkMemberActivity.class);
+	public static void memberCenter(final Activity activity) {
+		Intent intent = new Intent(activity, KoiUserCenterActivity.class);
 		activity.startActivity(intent);
-	}*/
+	}
 
 	/**
 	 * 礼包领取.
@@ -327,9 +329,8 @@ public class KoiGame {
 	 * @param activity
 	 */
 	public static void promoteCode(final Activity activity) {
-		/*Intent intent = new Intent(activity, HilinkPromoteCodeActivity.class);
-		intent.putExtra("codeType", "promoteCode");
-		activity.startActivity(intent);*/
+		Intent intent = new Intent(activity, KoiUserCenterActivity.class);
+		activity.startActivity(intent);
 	}
 	
 	/**
