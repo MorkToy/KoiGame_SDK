@@ -17,6 +17,7 @@ public class KUserSession {
 	public static String AREAID;
 	public static String REFRESH_TOKEN;
 	public static String ROLEID;
+	public static String BINDPHONE;
 	
 	
 
@@ -56,6 +57,7 @@ public class KUserSession {
 		REFRESH_TOKEN = SPACE + "REFRESH_TOKEN";
 		ROLEID = SPACE + "ROLE_ID";
 		AREAID = "areaId";
+		BINDPHONE = "BIND_PHONE";
 
 		buildCachedUserInfo();
 	}
@@ -115,6 +117,9 @@ public class KUserSession {
 		if (!StringUtils.isEmpty(userInfo.getRoleId())) {
 			PreferenceUtils.instance().putString(ROLEID, userInfo.getRoleId());
 		}
+		if (!StringUtils.isEmpty(userInfo.getBindPhoneNum())  && !userInfo.getBindPhoneNum().equals("0") ) {
+			PreferenceUtils.instance().putString(BINDPHONE, userInfo.getBindPhoneNum());
+		}
 	}
 
 	/**
@@ -129,7 +134,7 @@ public class KUserSession {
 		PreferenceUtils.instance().remove(ACCOUNT_NAME);
 		PreferenceUtils.instance().remove(REFRESH_TOKEN);
 		PreferenceUtils.instance().remove(ROLEID);
-		KUserSession.instance().setUserInfo(null);
+		//KUserSession.instance().setUserInfo(null);
 	}
 
 	public KUserInfo getUserInfo() {

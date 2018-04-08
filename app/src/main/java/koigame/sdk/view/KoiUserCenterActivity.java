@@ -36,6 +36,7 @@ public class KoiUserCenterActivity extends HActivityBase {
     private final String TAG = "KoiUserCenterActivity";
     private final int BINDSUCCESS = 61;
     private final int UPDATEPWDSUCCESS = 71;
+    private final int CHECKSUCCESS = 81;
 
     private TextView koi_tv_center_bind_account;
     private TextView koi_tv_center_bind_phonenum;
@@ -53,6 +54,8 @@ public class KoiUserCenterActivity extends HActivityBase {
     private EditText koi_edt_center_re_newpwd;
     private LinearLayout koi_layout_update_pwd;
     private LinearLayout koi_layout_check_idcard;
+    private EditText koi_edt_center_check_realname;
+    private EditText koi_edt_center_check_idcard;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -165,6 +168,69 @@ public class KoiUserCenterActivity extends HActivityBase {
         }
 
         doCenterUpdatePwd(accountName, accountType, oldPassword, newPassword);
+    }
+
+    /**
+     * 身份证实名认证校验.
+     * @param view 点击事件.
+     */
+    public void centerCheckCommit(View view) {
+        String realName = koi_edt_center_check_realname.getText().toString();
+        String idcard = koi_edt_center_check_idcard.getText().toString();
+
+        if (StringUtils.isEmpty(realName)) {
+            koi_edt_center_check_realname.setError(getResources().getString(RUtils.getStringId("koi_check_reaname_error")));
+            koi_edt_center_check_realname.requestFocus();
+        }
+
+        if (!NumberUtils.checkIdcard(idcard)) {
+            koi_edt_center_check_idcard.setError(getResources().getString(RUtils.getStringId("koi_check_idcard_error")));
+            koi_edt_center_check_idcard.requestFocus();
+        }
+
+        String accountName = KUserSession.instance().getUserInfo().getAccountName();
+        if (StringUtils.isEmpty(accountName)) {
+            AndroidUtils.showToast(KoiUserCenterActivity.this, getResources().getString(RUtils.getStringId("koi_center_bindsuccess")), 1);
+            return;
+        }
+        doCenterCheckCommit(idcard, realName);
+    }
+
+    /**
+     * 身份证实名验证服务器请求.
+     */
+    public void doCenterCheckCommit(final String idcard, final String realname) {
+        KThread progressThread = new KThread() {
+            @Override
+            public void run() {
+                try {
+                    AndroidUtils.showCicleProgress(KoiUserCenterActivity.this, getResources().getString(RUtils.getStringId("koi_check_ing")));
+
+                    JSONObject props = KWebApiImpl.instance().checkBindIdCard(idcard, realname);
+
+                    AndroidUtils.closeCiclePorgress(KoiUserCenterActivity.this);
+
+                    Message msg = new Message();
+                    msg.what = FAIL;
+                    if (JSONUtils.isOK(props)) {
+                        msg.what = CHECKSUCCESS;
+                    }
+                    msg.obj = props;
+                    mHandler.sendMessage(msg);
+                } catch (KServiceException e) {
+                    e.printStackTrace();
+                    AndroidUtils.closeCiclePorgress(KoiUserCenterActivity.this);
+                    if (isDestory()) {
+                        return;
+                    }
+                    Message msg = new Message();
+                    msg.what = FAIL;
+                    msg.obj = e;
+                    mHandler.sendMessage(msg);
+                }
+            }
+        };
+        progressThread.start();
     }
 
     /**
@@ -309,6 +375,8 @@ public class KoiUserCenterActivity extends HActivityBase {
 
         //实名认证
         koi_layout_check_idcard = (LinearLayout) findViewById(RUtils.getViewId("koi_layout_check_idcard"));
+        koi_edt_center_check_realname = (EditText)findViewById(RUtils.getViewId("koi_edt_center_check_realname"));
+        koi_edt_center_check_idcard = (EditText)findViewById(RUtils.getViewId("koi_edt_center_check_idcard"));
 
         layoutIndex.put("PAGE" + pageIndex, koi_main_layout);
     }
@@ -321,13 +389,14 @@ public class KoiUserCenterActivity extends HActivityBase {
         if (accountName == null || phone.equals("0")) {
             accountName = "未登录";
             phone = "未绑定";
-            koi_btn_center_bind.setClickable(false);
+            koi_btn_center_bind.setClickable(true);
         }
         String phoneNum = KUserSession.instance().getUserInfo().getBindPhoneNum();
 
         if (!StringUtils.isEmpty(phoneNum) && !"0".equals(phoneNum)) {
-            koi_btn_center_bind.setClickable(true);
+            koi_btn_center_bind.setClickable(false);
             koi_btn_center_bind.setText(getResources().getString(RUtils.getStringId("koi_center_bound")));
+            koi_btn_center_bind.setBackground(getResources().getDrawable(RUtils.getDrawableId("koi_phone_register_press_shape")));
         }
         koi_tv_center_bind_account.setText(getResources().getString(RUtils.getStringId("koi_center_accountname"), accountName));
         koi_tv_center_bind_phonenum.setText(getResources().getString(RUtils.getStringId("koi_center_bindphone"), phone));
@@ -428,6 +497,7 @@ public class KoiUserCenterActivity extends HActivityBase {
                         break;
 
                     case FAIL:
+                        AndroidUtils.showToast(KoiUserCenterActivity.this, getResources().getString(RUtils.getStringId("koi_system_login_error")), 1);
                         break;
 
                     case SENDSMSSUCCESS: {
@@ -447,6 +517,12 @@ public class KoiUserCenterActivity extends HActivityBase {
                     case UPDATEPWDSUCCESS: {
                         AndroidUtils.showToast(KoiUserCenterActivity.this, getResources().getString(RUtils.getStringId("koi_update_input_success")), 1);
                         KoiUserCenterActivity.this.finish();
+                        break;
+                    }
+                    case CHECKSUCCESS: {
+                        AndroidUtils.showToast(KoiUserCenterActivity.this, getResources().getString(RUtils.getStringId("koi_check_idcard_success")), 1);
+                        comeback(null);
+                        break;
                     }
                 }
 

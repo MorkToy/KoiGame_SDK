@@ -71,12 +71,16 @@
     <string name="koi_center_btn_checkidcard">实名\n认证</string>
     <string name="koi_center_btn_switchaccount">切换\n账号</string>
     <string name="koi_center_relogin">请重新登录</string>
-    <string name="koi_center_bindsuccess">请重新登录</string>
+    <string name="koi_center_bindsuccess">校验成功</string>
     
     <!-- 实名认证 -->
     <string name="koi_check_input_realname">请输入您的真实姓名</string>
     <string name="koi_check_input_idcard">请输入您的身份证号码</string>
     <string name="koi_check_btn_commit">提交认证</string>
+    <string name="koi_check_idcard_error">身份证格式不对</string>
+    <string name="koi_check_reaname_error">名字格式不对</string>
+    <string name="koi_check_ing">正在校验身份</string>
+    <string name="koi_check_idcard_success">校验身份成功</string>
     
     <!-- 手机绑定 -->
     <string name="koi_bind_input_phonenum">请输入手机号</string>

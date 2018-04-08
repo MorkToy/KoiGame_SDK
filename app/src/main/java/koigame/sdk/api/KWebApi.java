@@ -134,9 +134,9 @@ public interface KWebApi {
 	JSONObject updatePasswordBySms(String signCode, String accountName, String phoneNum, String password, String accountType) throws KServiceException;
 
 	/**
-	 * 判断身份证合法.
+	 * 判断身份证实名认证.
 	 */
-	JSONObject checkBindIdCard(String idCard, String realName, String userId) throws KServiceException;
+	JSONObject checkBindIdCard(String idCard, String realName) throws KServiceException;
 
 	/**
 	 * 客户端更新状态.

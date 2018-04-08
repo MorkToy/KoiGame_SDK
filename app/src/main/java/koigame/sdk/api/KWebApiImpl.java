@@ -406,12 +406,13 @@ public class KWebApiImpl implements KWebApi {
     }
 
     @Override
-    public JSONObject checkBindIdCard(String idCard, String realName, String userId) throws KServiceException {
-        KPostMethod post = new KPostMethod(KConstant.URL + "/user/bindPhoneAccount");
+    public JSONObject checkBindIdCard(String idCard, String realName) throws KServiceException {
+        KPostMethod post = new KPostMethod(KConstant.URL + "/user/checkBindIdCard");
         NameValuePair idCardNV = new BasicNameValuePair("idCard", idCard);
         NameValuePair realNameNV = new BasicNameValuePair("realName", realName);
-        NameValuePair userIdNV = new BasicNameValuePair(USERID, userId);
-        post.setRequestBody(new NameValuePair[]{idCardNV, realNameNV, userIdNV});
+        NameValuePair userIdNV = new BasicNameValuePair(USERID, KUserSession.instance().getUserInfo().getUserId() + "");
+        NameValuePair tokenNV = new BasicNameValuePair(ACCESS_TOKEN, KUserSession.instance().getUserInfo().getAccessToken());
+        post.setRequestBody(new NameValuePair[]{idCardNV, realNameNV, userIdNV, tokenNV});
         return execute(post);
     }
 

@@ -35,6 +35,7 @@ public class MainActivity extends Activity implements PermissionInterface {
     }
 
 
+
     public void doLogin(View view) {
         /*Intent intent = new Intent(this, KoiLoginActivity.class);
 		startActivity(intent);*/
@@ -120,7 +121,6 @@ public class MainActivity extends Activity implements PermissionInterface {
             @Override
             public void onClick(Dialog dialog, boolean confirm) {
                 if (confirm) {
-                    KoiGame.logout();
                     finish();
                     android.os.Process.killProcess(android.os.Process.myPid());
                 } else {

@@ -498,6 +498,7 @@ public class KoiLoginActivity extends HActivityBase {
                 switch (msg.what) {
                     case SUCCESS: {
                         JSONObject props = (JSONObject) msg.obj;
+                        Log.i(TAG, "login result:" + props.toString());
                         final KUserInfo userInfo = new KUserInfo(props);
                         KUserSession.instance().saveToPreference(userInfo);
                         KUserSession.instance().setUserInfo(userInfo);
