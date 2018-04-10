@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/hl_loading_container"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        
+        <TextView
+            android:id="@+id/hl_loading_process"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="0%"
+            android:textColor="@color/background_dark"
+            android:textSize="14sp"
+            android:visibility="visible"
+            />
+
+        <koigame.sdk.view.progress.RoundCornerProgressBar
+            android:id="@+id/hl_loading"
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:rcBackgroundColor="@color/custom_progress_background"
+            app:rcBackgroundPadding="2dp"
+            app:rcMax="100"
+            app:rcProgress="0"
+            app:rcProgressColor="@color/custom_progress_blue_progress"
+            app:rcRadius="20dp"
+            />
+
+       
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            >
+
+            <TextView
+                android:id="@+id/hl_res_loading_tip_1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1sp"
+                android:layout_marginTop="1sp"
+                android:gravity="center_horizontal"
+                android:text="@string/hl_unpack_tips"
+                android:textColor="@color/hl_black"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/hl_res_loading_tip_2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/hl_unpack_tips"
+                android:textColor="@color/hl_white"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+        </FrameLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,5 @@
+<resources>
+
+    <dimen name="hl_main_loading_margin_bottom">50dip</dimen>
+
+</resources>

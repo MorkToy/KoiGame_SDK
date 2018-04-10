@@ -1,1 +1,1 @@
-include ':Koi_SDK', ':Koi_Demo', ':Koi_Platform_Shell'
+include ':Koi_SDK', ':Koi_Demo', ':Koi_Platform_Shell', ':JNIForLOL', ':AndriodShellForYW'

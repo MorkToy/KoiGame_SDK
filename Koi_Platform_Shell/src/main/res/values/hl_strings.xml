@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="hl_shortcut_tips">"快捷方式已创建"</string>
+    <string name="hl_unpack_tips">"初始化本地數據，不產生流量費用"</string>
+    <string name="hl_ok">"確定"</string>
+    <string name="hl_cancel">"取消"</string>
+    <string name="hl_confirm_update_hint">"安装提示"</string>
+    <string name="hl_confirm_update">"为保证您的更好的体验游戏，需要您安装最新的版本。\n\n点击确定，立即安装。"</string>
+    <string name="hl_update_noew">"立即更新"</string>
+    <string name="hl_announce">"系统公告"</string>
+    <string name="hl_maintenance">"维护公告"</string>
+    <string name="hl_update_continuegame">"继续游戏"</string>
+    <string name="hl_tip_title">提示</string>
+    <string name="hl_retry">重试</string>
+    <string name="hl_confirm">確定</string>
+    <string name="hl_cancle">取消</string>
+    <string name="hl_quit">退出</string>
+    <string name="hl_quit_game">退出遊戲</string>
+    <string name="hl_update_title">更新提示</string>
+    <string name="hl_update_go_on">繼續下載</string>
+    <string name="hl_update_no_wifi">您未連接到WIFI網絡，是否下載補丁？</string>
+    <string name="hl_update_package_size">\n补丁包大小：%s</string>
+    <string name="hl_update_downloading">正在下載遊戲更新檔</string>
+    <string name="hl_update_download_failed">补丁下载失败</string>
+    <string name="hl_update_failed">游戏补丁安装失败</string>
+    <string name="hl_updating">解壓縮中</string>
+    <string name="hl_sdcard_not_exists">SD卡不可用，请检查</string>
+    <string name="hl_check_network">请检查网络连接是否可用！</string>
+    <string name="hl_quit_question">您確定要退出遊戲嗎?</string>
+    <string name="hl_update_force_msg">"发现新版本。本次更新为强制更新,建议您使用Wifi升级版本,否则软件将无法正常运行！"</string>
+    <string name="hl_dialog_loading_login">"正在加載遊戲资源,請稍等片刻。"</string>
+    <string name="hl_dialog_loading_update">"正在更新最新版本,请稍等片刻...\n请保持网络信号稳定可用。"</string>
+    <string name="hl_dialog_loading_connect">"正在与服务器通讯...\n请保持网络信号稳定可用。"</string>
+    <string name="hl_tips_keep_network_signal">"请保持网络信号稳定可用，否则有可能会破坏游戏存档。"</string>
+    <string name="hl_tips_network_error">"发生通讯错误!\n请到网络信号良好的地方重试。"</string>
+    <string name="hl_tips_connecting">"	正在通讯..."</string>
+    <string name="hl_tips_get_userinfo">"讀取使用者資訊..."</string>
+    <string name="hl_network_error">"网速不稳定，请保持良好的网络环境..."</string>
+    <string name="hl_init_error">"遊戲初始化失敗"</string>
+    <string name="hl_logout_question">註銷賬號將重啟遊戲，是否繼續？</string>
+    <string name="hl_pay_success">充值成功！请耐心等待发货</string>
+    <string name="hl_share_success">分享成功</string>
+    <string name="hl_share_error">系统繁忙，请稍后再试</string>
+    <string name="hl_no_obb_patch">未发现数据包，正在下载。</string>
+    <string name="hl_paytype">选择充值方式</string>
+    <string name="hl_pay_client">GooglePlay</string>
+    <string name="hl_pay_mol">Mol支付</string>
+    <string name="hl_pay_mycard">MyCard支付</string>
+    <string name="hl_cancer_pay">取消支付</string>
+    <string name="hl_web_pay">网页支付</string>
+    <string name="hl_dialog_title">正在下載補丁</string>
+
+</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- color -->
+
+    <color name="hl_white">#FFFFFF</color>
+    <color name="hl_black">#000000</color>
+    <color name="hl_background">#EBEBEB</color>
+    <color name="hl_blue">#0000FF</color>
+    <color name="hl_dark_blue">#415f91</color>
+    <color name="hl_user_setting_hint_color">#898989</color>
+    <color name="hl_recharge_pay_record_bg_color">#b0b0b0</color>
+    <color name="hl_red">#ff0000</color>
+    <color name="hl_list_view_divider">#898989</color>
+    <color name="hl_balance_color">#FFFF8000</color>
+    <color name="hl_hint">#B3B3B3</color>
+    <color name="transparent">#00000000</color>
+
+
+    <!-- Ids -->
+
+    <item name="hl_left_btn_id" type="id"/>
+    <item name="hl_right_btn_id" type="id"/>
+    <item name="hl_title_txt_id" type="id"/>
+    <item name="hl_title_progress_bar_id" type="id"/>
+
+    <!-- Ids -->
+
+
+    <!-- dimen -->
+
+    <dimen name="hl_margin_size">5dip</dimen>
+    <dimen name="hl_btn_text_size">18sp</dimen>
+    <dimen name="hl_divider_height">2dip</dimen>
+    <dimen name="hl_option_item_marginLeft">10dip</dimen>
+    <dimen name="hl_item_divider">8dip</dimen>
+    <dimen name="hl_item_height">45dip</dimen>
+    <dimen name="hl_logout_text_size">23sp</dimen>
+    <dimen name="hl_bind_phonenumber_paddingTop">23dip</dimen>
+    <dimen name="hl_image_size">48dip</dimen>
+    <dimen name="hl_platform_image_size">30dip</dimen>
+    <dimen name="hl_platform_padding_size">3dip</dimen>
+    <dimen name="hl_platform_image_size_large">48dip</dimen>
+    <dimen name="hl_pay_tip_text_size">16sp</dimen>
+    <dimen name="hl_pay_service_text_size">12sp</dimen>
+    <dimen name="hl_pay_password_tip_text_size">18sp</dimen>
+    <dimen name="hl_network_error_tip_text_size">16sp</dimen>
+    <dimen name="hl_network_error_content_text_size">12sp</dimen>
+    <dimen name="hl_portrait_add_text_size">14sp</dimen>
+    <dimen name="hl_register_agreement_text_size">12sp</dimen>
+    <dimen name="hl_register_sendsms_text_size">12sp</dimen>
+    <dimen name="hl_records_title_text_size">14sp</dimen>
+    <dimen name="hl_records_time_text_size">12sp</dimen>
+    <dimen name="hl_option_margin_top">15dip</dimen>
+    <!-- dimen -->
+
+</resources>
