@@ -65,7 +65,7 @@ public class KPostMethod {
 		NameValuePair systemVersionNV = new BasicNameValuePair(KWebApi.SYSTEMVER, "version.release");
 
 		NameValuePair timeNV = new BasicNameValuePair(KWebApi.CURRTIME, DateUtil.dateFormat(new Date(),CY_DAY_FORMAT));
-		NameValuePair resolutionNV = new BasicNameValuePair(KWebApi.RESOLUTION, AndroidUtils.instance().getResolution());
+		NameValuePair resolutionNV = new BasicNameValuePair(KWebApi.RESOLUTION, "");
 		NameValuePair packageNameNV = new BasicNameValuePair(KWebApi.PACKAGENAME, "");//ActivityKeep.getInstance().getMainActivity().getPackageName()
 		NameValuePair shopTypeNV = new BasicNameValuePair(KWebApi.SHOPTYPE,"0");
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -29,7 +29,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-
 public class Cocos2dxLocalStorage {
 
     private static final String TAG = "Cocos2dxLocalStorage";
@@ -37,7 +36,7 @@ public class Cocos2dxLocalStorage {
     private static String DATABASE_NAME = "jsb.sqlite";
     private static String TABLE_NAME = "data";
     private static final int DATABASE_VERSION = 1;
-    
+
     private static DBOpenHelper mDatabaseOpenHelper = null;
     private static SQLiteDatabase mDatabase = null;
     /**
@@ -56,12 +55,12 @@ public class Cocos2dxLocalStorage {
         return false;
     }
     
-    public static void destory() {
+    public static void destroy() {
         if (mDatabase != null) {
             mDatabase.close();
         }
     }
-    
+
     public static void setItem(String key, String value) {
         try {
             String sql = "replace into "+TABLE_NAME+"(key,value)values(?,?)";
@@ -70,28 +69,28 @@ public class Cocos2dxLocalStorage {
             e.printStackTrace();
         }
     }
-    
+
     public static String getItem(String key) {
         String ret = null;
         try {
-        String sql = "select value from "+TABLE_NAME+" where key=?";
-        Cursor c = mDatabase.rawQuery(sql, new String[]{key});
-        while (c.moveToNext()) {
-            // only return the first value
-            if (ret != null) 
-            {
-                Log.e(TAG, "The key contains more than one value.");
-                break;
+            String sql = "select value from "+TABLE_NAME+" where key=?";
+            Cursor c = mDatabase.rawQuery(sql, new String[]{key});
+            while (c.moveToNext()) {
+                // only return the first value
+                if (ret != null)
+                {
+                    Log.e(TAG, "The key contains more than one value.");
+                    break;
+                }
+                ret = c.getString(c.getColumnIndex("value"));
             }
-            ret = c.getString(c.getColumnIndex("value"));  
-        }  
-        c.close();
+            c.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return ret == null ? "" : ret;
+        return ret;
     }
-    
+
     public static void removeItem(String key) {
         try {
             String sql = "delete from "+TABLE_NAME+" where key=?";
@@ -100,7 +99,7 @@ public class Cocos2dxLocalStorage {
             e.printStackTrace();
         }
     }
-    
+
     public static void clear() {
         try {
             String sql = "delete from "+TABLE_NAME;
@@ -109,7 +108,6 @@ public class Cocos2dxLocalStorage {
             e.printStackTrace();
         }
     }
-    
 
     /**
      * This creates/opens the database.
@@ -124,7 +122,7 @@ public class Cocos2dxLocalStorage {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("CREATE TABLE IF NOT EXISTS "+TABLE_NAME+"(key TEXT PRIMARY KEY,value TEXT);");
         }
-        
+
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "

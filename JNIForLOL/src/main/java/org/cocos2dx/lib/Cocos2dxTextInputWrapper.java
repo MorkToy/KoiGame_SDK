@@ -1,5 +1,5 @@
 /****************************************************************************
-Copyright (c) 2010-2011 cocos2d-x.org
+Copyright (c) 2010-2016 cocos2d-x.org
 
 http://www.cocos2d-x.org
 
@@ -26,18 +26,19 @@ package org.cocos2dx.lib;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-public class Cocos2dxTextInputWraper implements TextWatcher, OnEditorActionListener {
+public class Cocos2dxTextInputWrapper implements TextWatcher, OnEditorActionListener {
     // ===========================================================
     // Constants
     // ===========================================================
 
-    private static final String TAG = Cocos2dxTextInputWraper.class.getSimpleName();
+    private static final String TAG = Cocos2dxTextInputWrapper.class.getSimpleName();
 
     // ===========================================================
     // Fields
@@ -51,7 +52,7 @@ public class Cocos2dxTextInputWraper implements TextWatcher, OnEditorActionListe
     // Constructors
     // ===========================================================
 
-    public Cocos2dxTextInputWraper(final Cocos2dxGLSurfaceView pCocos2dxGLSurfaceView) {
+    public Cocos2dxTextInputWrapper(final Cocos2dxGLSurfaceView pCocos2dxGLSurfaceView) {
         this.mCocos2dxGLSurfaceView = pCocos2dxGLSurfaceView;
     }
 
@@ -132,11 +133,11 @@ public class Cocos2dxTextInputWraper implements TextWatcher, OnEditorActionListe
                 if ( '\n' != text.charAt(text.length() - 1)) {
                     text += '\n';
                 }
-            }
-            
-            final String insertText = text;
-            this.mCocos2dxGLSurfaceView.insertText(insertText);
 
+                mCocos2dxGLSurfaceView.insertText(text);
+            } else {
+                mCocos2dxGLSurfaceView.insertText("");
+            }
         }
         
         if (pActionID == EditorInfo.IME_ACTION_DONE) {

@@ -88,16 +88,16 @@ public class AndroidUtils {
 		});
 	}
 
-	public static void closeAutologinPorgress(final Activity activity) {
+	public static KoiAutoLoginDialog closeAutologinPorgress(final Activity activity) {
 		activity.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				if (koiAutoLoginDialog != null) {
 					koiAutoLoginDialog.dismiss();
-					koiAutoLoginDialog = null;
 				}
 			}
 		});
+		return koiAutoLoginDialog;
 	}
 
 	public static void showCicleProgress(final Activity activity, final String message) {

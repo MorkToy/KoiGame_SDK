@@ -409,7 +409,7 @@
 
 
         <!-- 忘记密码start -->
-        <LinearLayout
+        <!--<LinearLayout
             android:id="@+id/koi_layout_fogetpwd"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -481,7 +481,7 @@
                 android:onClick="forgetPwdCommit"
                 android:textColor="@android:color/background_light"
                 android:textSize="17sp" />
-        </LinearLayout>
+        </LinearLayout>-->
         <!-- 忘记密码end -->
 
     </RelativeLayout>

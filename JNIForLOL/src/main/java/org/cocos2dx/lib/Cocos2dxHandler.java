@@ -1,5 +1,6 @@
 /****************************************************************************
-Copyright (c) 2010-2011 cocos2d-x.org
+Copyright (c) 2010-2013 cocos2d-x.org
+Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -64,40 +65,39 @@ public class Cocos2dxHandler extends Handler {
 
     public void handleMessage(Message msg) {
         switch (msg.what) {
-            case Cocos2dxHandler.HANDLER_SHOW_DIALOG:
-                showDialog(msg);
-                break;
+        case Cocos2dxHandler.HANDLER_SHOW_DIALOG:
+            showDialog(msg);
+            break;
         }
     }
-    
+
     private void showDialog(Message msg) {
-    	Activity theActivity = this.mActivity.get();
+        Activity theActivity = this.mActivity.get();
         DialogMessage dialogMessage = (DialogMessage)msg.obj;
         new AlertDialog.Builder(theActivity)
-        .setTitle(dialogMessage.titile)
+        .setTitle(dialogMessage.title)
         .setMessage(dialogMessage.message)
         .setPositiveButton("Ok", 
                 new DialogInterface.OnClickListener() {
-                    
+
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // TODO Auto-generated method stub
-                        
+
                     }
                 }).create().show();
     }
 
-    
     // ===========================================================
     // Inner and Anonymous Classes
     // ===========================================================
-    
+
     public static class DialogMessage {
-        public String titile;
+        public String title;
         public String message;
         
         public DialogMessage(String title, String message) {
-            this.titile = title;
+            this.title = title;
             this.message = message;
         }
     }

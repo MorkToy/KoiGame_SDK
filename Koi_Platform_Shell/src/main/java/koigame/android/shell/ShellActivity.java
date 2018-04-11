@@ -85,6 +85,7 @@ import koigame.sdk.util.ResourceUtils;
 import koigame.sdk.util.StringUtils;
 import koigame.sdk.util.bean.PermissionInterface;
 import koigame.sdk.view.KoiLoginActivity;
+import koigame.sdk.view.KoiPayActivity;
 import koigame.sdk.view.progress.RoundCornerProgressBar;
 
 
@@ -336,7 +337,7 @@ public class ShellActivity extends Activity implements PermissionInterface {
                 // 设置一些metaData的初始值
 //				setMetaData(loginInfo);
                 Log.i(TAG, "loadGame ####################################################### ");
-                Intent testPay = new Intent(ShellActivity.this, KoiLoginActivity.class);
+                Intent testPay = new Intent(ShellActivity.this, KoiPayActivity.class);
                 ShellActivity.this.startActivity(testPay);
                 /*rootView.setOnClickListener(null);
                 if (loginInfo.versionInfo.isResourceNeedUpdate()) {

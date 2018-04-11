@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="9dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/koi_tv_comback"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:onClick="comeback"
+            android:text="@string/koi_comeback"
+            android:textColor="@color/koi_btn_blue"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:src="@drawable/koi_logo" />
+
+            <TextView
+                android:id="@+id/koi_account_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:layout_marginTop="3dp"
+                android:text="账号"
+                android:textColor="#163953"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- 忘记密码start -->
+    <LinearLayout
+        android:id="@+id/koi_layout_fogetpwd"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/koi_edt_forget_name"
+            style="@style/koi_edittext_account"
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/koi_hint_foggetaccount" />
+
+        <EditText
+            android:id="@+id/koi_edt_forget_phone"
+            style="@style/koi_edittext_account"
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:inputType="number"
+            android:hint="@string/koi_hint_foggetphonenum" />
+
+        <LinearLayout
+            android:layout_width="260dp"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/koi_edt_forget_code"
+                style="@style/koi_edittext_account"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="6"
+                android:hint="@string/koi_text_inputcheckcode"
+                android:maxLength="7" />
+
+            <Button
+                android:id="@+id/koi_btn_forget_send"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="4"
+                android:background="@drawable/koi_register_btn_accountlogin_select"
+                android:text="@string/koi_hint_fogget_sendsms"
+                android:onClick="forgetPwdSend"
+                android:textColor="@color/koi_btn_blue"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/koi_edt_forget_newpwd"
+            style="@style/koi_edittext_pwd"
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/koi_hint_fogget_newpwd" />
+
+        <Button
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/koi_register_btn_phonelogin_select"
+            android:text="@string/koi_hint_fogget_commit"
+            android:onClick="forgetPwdCommit"
+            android:textColor="@android:color/background_light"
+            android:textSize="17sp" />
+    </LinearLayout>
+    <!-- 忘记密码end -->
+
+</LinearLayout>

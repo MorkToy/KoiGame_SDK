@@ -1,6 +1,6 @@
 /****************************************************************************
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2015 Chukong Technologies Inc.
+Copyright (c) 2013-2016 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -27,8 +27,11 @@ package org.cocos2dx.lib;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.text.BoringLayout;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -76,17 +79,82 @@ public final class Cocos2dxBitmap {
     private static native void nativeInitBitmapDC(final int width,
             final int height, final byte[] pixels);
 
-    public static boolean createTextBitmapShadowStroke(byte[] bytes, final String fontName, int fontSize,
+    //http://egoco.de/post/19077604048/calculating-the-height-of-text-in-android
+    public static int getTextHeight(String text, int maxWidth, float textSize, Typeface typeface) {
+        TextPaint paint = new TextPaint(Paint.ANTI_ALIAS_FLAG | Paint.SUBPIXEL_TEXT_FLAG);
+        paint.setTextSize(textSize);
+        paint.setTypeface(typeface);
+
+        int lineCount = 0;
+
+        int index = 0;
+        int length = text.length();
+
+        while(index < length) {
+            int numOfChars = paint.breakText(text, index, length, true, maxWidth, null);
+            index += numOfChars;
+            lineCount++;
+            //in andriod 4.4.2, the breakText will return 0, which would lead to infinite loop
+            if (numOfChars == 0) {
+                break;
+            }
+        }
+
+        float actualHeight = (Math.abs(paint.ascent()) + Math.abs(paint.descent()));
+
+        return (int)Math.floor(lineCount * actualHeight);
+    }
+
+    public static Typeface calculateShrinkTypeFace(String text, int width, int height, Layout.Alignment hAlignment, float textSize, TextPaint paint, boolean enableWrap)
+    {
+        if (width == 0 || height == 0) {
+            return  paint.getTypeface();
+        }
+        float actualWidth = width + 1;
+        float actualHeight = height + 1;
+        float fontSize = textSize + 1;
+
+        if (!enableWrap) {
+            while (actualWidth > width || actualHeight > height) {
+                fontSize = fontSize - 1;
+
+                actualWidth = (int)Math.ceil( StaticLayout.getDesiredWidth(text, paint));
+                actualHeight = getTextHeight(text, (int)actualWidth, fontSize, paint.getTypeface());
+
+                paint.setTextSize(fontSize);
+                if (fontSize <= 0) {
+                    paint.setTextSize(textSize);
+                    break;
+                }
+            }
+        } else {
+            while (actualHeight > height || actualWidth > width) {
+                fontSize = fontSize - 1;
+
+                Layout layout = new StaticLayout(text, paint, (int) width, hAlignment,1.0f,0.0f,false);
+                actualWidth = layout.getWidth();
+                actualHeight = layout.getLineTop(layout.getLineCount());
+
+                paint.setTextSize(fontSize);
+
+                if (fontSize <= 0) {
+                    paint.setTextSize(textSize);
+                    break;
+                }
+            }
+
+        }
+        return paint.getTypeface();
+    }
+
+    public static boolean createTextBitmapShadowStroke(final String string,  final String fontName, int fontSize,
                                                        int fontTintR, int fontTintG, int fontTintB, int fontTintA,
                                                        int alignment, int width, int height,
-                                                       boolean shadow, float shadowDX, float shadowDY, float shadowBlur, float shadowOpacity,
-                                                       boolean stroke, int strokeR, int strokeG, int strokeB, int strokeA, float strokeSize) {
-        String string;
-        if (bytes == null || bytes.length == 0) {
-          return false;
-        } else {
-          string = new String(bytes);
-        }
+                                                       boolean stroke, int strokeR, int strokeG, int strokeB, int strokeA, float strokeSize,
+                                                       boolean enableWrap,
+                                                       int overflow,
+                                                       boolean enableBold) {
+
 
         Layout.Alignment hAlignment = Layout.Alignment.ALIGN_NORMAL;
         int horizontalAlignment = alignment & 0x0F;
@@ -103,24 +171,47 @@ public final class Cocos2dxBitmap {
                 break;
         }
 
-        TextPaint paint = Cocos2dxBitmap.newPaint(fontName, fontSize);
+        TextPaint paint = Cocos2dxBitmap.newPaint(fontName, fontSize, enableBold);
+
         if (stroke) {
             paint.setStyle(TextPaint.Style.STROKE);
             paint.setStrokeWidth(strokeSize);
         }
 
         int maxWidth = width;
+
         if (maxWidth <= 0) {
-            maxWidth = (int) Math.ceil( StaticLayout.getDesiredWidth(string, paint));
+            maxWidth = (int)Math.ceil( StaticLayout.getDesiredWidth(string, paint));
         }
-        StaticLayout staticLayout = new StaticLayout(string, paint, maxWidth , hAlignment,1.0f,0.0f,false);
-        int layoutWidth = staticLayout.getWidth();
-        int layoutHeight = staticLayout.getLineTop(staticLayout.getLineCount());
+
+        Layout layout = null;
+        int layoutWidth = 0;
+        int layoutHeight = 0;
+
+
+        if (overflow == 1 && !enableWrap){
+            int widthBoundary = (int)Math.ceil( StaticLayout.getDesiredWidth(string, paint));
+            layout = new StaticLayout(string, paint, widthBoundary , hAlignment,1.0f,0.0f,false);
+        }else {
+            if (overflow == 2) {
+                calculateShrinkTypeFace(string, width, height, hAlignment, fontSize, paint, enableWrap);
+            }
+            layout = new StaticLayout(string, paint, maxWidth , hAlignment,1.0f,0.0f,false);
+        }
+
+        layoutWidth = layout.getWidth();
+        layoutHeight = layout.getLineTop(layout.getLineCount());
 
         int bitmapWidth = Math.max(layoutWidth, width);
         int bitmapHeight = layoutHeight;
         if (height > 0) {
             bitmapHeight = height;
+        }
+
+        if (overflow == 1 && !enableWrap) {
+            if (width > 0) {
+                bitmapWidth = width;
+            }
         }
 
         if (bitmapWidth == 0 || bitmapHeight == 0) {
@@ -153,17 +244,17 @@ public final class Cocos2dxBitmap {
         if ( stroke )
         {
             paint.setARGB(strokeA, strokeR, strokeG, strokeB);
-            staticLayout.draw(canvas);
+            layout.draw(canvas);
         }
         paint.setStyle(TextPaint.Style.FILL);
         paint.setARGB(fontTintA, fontTintR, fontTintG, fontTintB);
-        staticLayout.draw(canvas);
+        layout.draw(canvas);
 
         Cocos2dxBitmap.initNativeObject(bitmap);
         return true;
     }
 
-    private static TextPaint newPaint(final String fontName, final int fontSize) {
+    private static TextPaint newPaint(final String fontName, final int fontSize, final boolean enableBold) {
         final TextPaint paint = new TextPaint();
         paint.setTextSize(fontSize);
         paint.setAntiAlias(true);
@@ -182,7 +273,11 @@ public final class Cocos2dxBitmap {
                 paint.setTypeface(Typeface.create(fontName, Typeface.NORMAL));
             }
         } else {
-            paint.setTypeface(Typeface.create(fontName, Typeface.NORMAL));
+            if(enableBold) {
+                paint.setTypeface(Typeface.create(fontName, Typeface.BOLD));
+            } else {
+                paint.setTypeface(Typeface.create(fontName, Typeface.NORMAL));
+            }
         }
 
         return paint;

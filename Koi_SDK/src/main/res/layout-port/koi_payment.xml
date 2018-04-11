@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    >
 
     <!-- 头部logo start -->
 
@@ -11,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="9dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/koi_tv_comback"
@@ -21,15 +22,14 @@
             android:onClick="comeback"
             android:text="@string/koi_comeback"
             android:textColor="@color/koi_btn_blue"
-            android:visibility="gone"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center"
-             >
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="80dp"
@@ -52,7 +52,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" >
+        android:layout_gravity="center">
 
         <!-- 主页 start -->
 
@@ -62,7 +62,7 @@
             android:layout_marginTop="23dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="visible" >
+            android:visibility="visible">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -84,8 +84,8 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/koi_payment_btn_pay_select"
-                android:onClick="doAlipay"
-                android:gravity="center" >
+                android:gravity="center"
+                android:onClick="doWechatPay">
 
                 <ImageView
                     android:id="@+id/koi_payment_wechatlogo"
@@ -96,8 +96,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:layout_marginRight="15dp"
+                    android:layout_marginTop="3dp"
                     android:layout_toRightOf="@+id/koi_payment_wechatlogo"
                     android:text="@string/koi_payment_wechatpay"
                     android:textColor="@color/koi_btn_blue"
@@ -108,9 +108,9 @@
                 android:layout_width="260dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="5dp"
-                android:onClick="doWechatPay"
                 android:background="@drawable/koi_payment_btn_pay_select"
-                android:gravity="center" >
+                android:gravity="center"
+                android:onClick="doAlipay">
 
                 <ImageView
                     android:id="@+id/koi_payment_alipaylogo"
@@ -121,8 +121,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:layout_marginRight="15dp"
+                    android:layout_marginTop="3dp"
                     android:layout_toRightOf="@+id/koi_payment_alipaylogo"
                     android:text="@string/koi_payment_alipay"
                     android:textColor="@color/koi_btn_blue"
@@ -140,8 +140,7 @@
             android:layout_marginTop="23dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone"
-             >
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -163,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="45dp"
@@ -188,11 +187,11 @@
                 android:text="@string/koi_payment_returngame"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp" />
-            
+
         </LinearLayout>
-        
+
         <!-- 支付成功提示 end -->
-        
+
         <!-- 支付是失败提示 start -->
         <LinearLayout
             android:layout_width="fill_parent"
@@ -200,14 +199,13 @@
             android:layout_marginTop="23dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone"
-             >
-            
+            android:visibility="gone">
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="45dp"
@@ -223,16 +221,16 @@
                     android:textColor="@color/koi_error_red"
                     android:textSize="18sp" />
             </LinearLayout>
-            
+
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="3dp"
-                    android:text="@string/koi_payment_error_desc"
-                    android:textColor="@color/koi_hint_tips_gray"
-                    android:textSize="14sp" />
-            
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="3dp"
+                android:text="@string/koi_payment_error_desc"
+                android:textColor="@color/koi_hint_tips_gray"
+                android:textSize="14sp" />
+
             <Button
                 android:layout_width="260dp"
                 android:layout_height="40dp"
@@ -241,10 +239,10 @@
                 android:text="@string/koi_payment_returngame"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp" />
-            
+
         </LinearLayout>
-        
-         <!-- 支付是失败提示 end -->
+
+        <!-- 支付是失败提示 end -->
     </RelativeLayout>
 
 </LinearLayout>
