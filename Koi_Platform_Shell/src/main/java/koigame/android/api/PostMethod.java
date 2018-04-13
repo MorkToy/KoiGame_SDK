@@ -17,7 +17,7 @@ import koigame.sdk.bean.user.KUserSession;
 import koigame.sdk.util.AndroidUtils;
 import koigame.sdk.util.CollectionUtils;
 import koigame.sdk.util.DateUtil;
-import koigame.sdk.util.ResourceUtils;
+import koigame.sdk.util.PlatformUtils;
 import koigame.sdk.util.crypto.MD5;
 
 import static koigame.sdk.util.DateUtil.CY_DAY_FORMAT;
@@ -41,7 +41,7 @@ public class PostMethod {
 
         String time = getTime();
         NameValuePair gameIdNV = new BasicNameValuePair(KWebApi.GAMEID, 27 + "");
-        NameValuePair siteIdNV = new BasicNameValuePair(KWebApi.SITEID, ResourceUtils.getInstance().getSiteResouceId(KMetaData.Site) + "");
+        NameValuePair siteIdNV = new BasicNameValuePair(KWebApi.SITEID, PlatformUtils.getInstance().getSiteResouceId(KMetaData.Site) + "");
         NameValuePair channelNV = new BasicNameValuePair(KWebApi.CHANNEL, KMetaData.Site);
         NameValuePair channelidNV = new BasicNameValuePair(KWebApi.CHANNEL_ID, KMetaData.ChannelId);
         NameValuePair areaNV = new BasicNameValuePair(KWebApi.AREAID, Integer.valueOf(

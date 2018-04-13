@@ -2,8 +2,6 @@ package koigame.android.shell;
 
 
 import android.app.Activity;
-import android.app.Application;
-import android.support.multidex.MultiDexApplication;
 
 import koigame.sdk.KoiApplication;
 import koigame.sdk.KoiGame;

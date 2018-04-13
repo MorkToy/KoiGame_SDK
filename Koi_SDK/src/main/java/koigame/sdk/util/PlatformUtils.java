@@ -1,6 +1,6 @@
 package koigame.sdk.util;
 
-public class ResourceUtils {
+public class PlatformUtils {
 	
 	private int id;
 	
@@ -10,17 +10,19 @@ public class ResourceUtils {
 
 
 
-	private static ResourceUtils instance = new ResourceUtils();
+	private static PlatformUtils instance = new PlatformUtils();
 	
-	private ResourceUtils() {}
+	private PlatformUtils() {}
 	
-	public static ResourceUtils getInstance() {
+	public static PlatformUtils getInstance() {
 		return instance;
 	}
 	
 	public int getGameResouceId(String code) {
 		if ("jokes".equals(code)) {
 			return 27;
+		} else if ("yangwa".equals(code)) {
+			return 1001;
 		}
 		return 27;
 	}

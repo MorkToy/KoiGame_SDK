@@ -46,7 +46,7 @@
         android:layout_marginRight="40dp"
         android:layout_marginBottom="35dp"
         android:text="确定退出游戏吗？"
-        android:textSize="12sp"
+        android:textSize="16sp"
         android:textColor="@color/koi_bg_blue"/>
     <View
         android:layout_width="match_parent"

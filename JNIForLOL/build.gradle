@@ -26,6 +26,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation files('libs/android-async-http-1.4.8.jar')
     implementation files('libs/libcocosanalytics.jar')
+    implementation files('libs/android-async-http-1.4.9.jar')
+    implementation files('libs/httpclient-4.4.1.1.jar')
+    implementation files('libs/com.android.vending.expansion.zipfile.jar')
 }

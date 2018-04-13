@@ -47,6 +47,7 @@ import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.zip.CRC32;
@@ -66,7 +67,6 @@ import koigame.sdk.KoiGame;
 import koigame.sdk.api.KServiceException;
 import koigame.sdk.api.KWebApiImpl;
 import koigame.sdk.bean.pay.KPayInfo;
-import koigame.sdk.bean.user.KLoginEvent;
 import koigame.sdk.bean.user.KLoginInfo;
 import koigame.sdk.bean.user.KUserSession;
 import koigame.sdk.bean.version.KUpdateInfo;
@@ -81,7 +81,7 @@ import koigame.sdk.util.NumberUtils;
 import koigame.sdk.util.PermissionHelper;
 import koigame.sdk.util.PreferenceUtils;
 import koigame.sdk.util.RUtils;
-import koigame.sdk.util.ResourceUtils;
+import koigame.sdk.util.PlatformUtils;
 import koigame.sdk.util.StringUtils;
 import koigame.sdk.util.bean.PermissionInterface;
 import koigame.sdk.view.KoiLoginActivity;
@@ -119,7 +119,7 @@ public class ShellActivity extends Activity implements PermissionInterface {
 
     private static PopupWindow webviewWindow;
 
-    //private JNIActivity JNIActivity;//
+    private JNIActivity JNIActivity;
 
     public static final String EXP_PATH = File.separator + "Android"
             + File.separator + "obb" + File.separator;
@@ -157,8 +157,8 @@ public class ShellActivity extends Activity implements PermissionInterface {
         try {
             setContentView(RUtils.getLayoutId("main"));
             KoiGame.setScreenOrientation(screenOrientation);
-            /*JNIActivity = new JNIActivity();
-            JNIActivity.setActivity(ShellActivity.this);*/
+            JNIActivity = new JNIActivity();
+            JNIActivity.setActivity(ShellActivity.this);
             
           //初始化并发起权限申请  
             mPermissionHelper = new PermissionHelper(this, this);  
@@ -337,9 +337,9 @@ public class ShellActivity extends Activity implements PermissionInterface {
                 // 设置一些metaData的初始值
 //				setMetaData(loginInfo);
                 Log.i(TAG, "loadGame ####################################################### ");
-                Intent testPay = new Intent(ShellActivity.this, KoiPayActivity.class);
-                ShellActivity.this.startActivity(testPay);
-                /*rootView.setOnClickListener(null);
+                /*Intent testPay = new Intent(ShellActivity.this, KoiPayActivity.class);
+                ShellActivity.this.startActivity(testPay);*/
+                rootView.setOnClickListener(null);
                 if (loginInfo.versionInfo.isResourceNeedUpdate()) {
                     if (!NetUtils.instance()
                             .isWifiConnected(ShellActivity.this)) { // 如果不是wifi连接
@@ -355,8 +355,8 @@ public class ShellActivity extends Activity implements PermissionInterface {
                                 try {
                                     if (updateGame(loginInfo.versionInfo
                                             .getResourceUpdateConfigs())) {
-                                        Map<String, Object> eventValue = new HashMap<String, Object>();
-                                    	eventValue.put("update", 1);
+                                        /*Map<String, Object> eventValue = new HashMap<String, Object>();
+                                    	eventValue.put("update", 1);*/
 
                                         //HWebApiImpl.instance().checkActive(loginInfo.dataJson.getString("userId"));
                                         loadGame(loginInfo);
@@ -372,7 +372,7 @@ public class ShellActivity extends Activity implements PermissionInterface {
                     }
                 } else {
                     loadGame(loginInfo);
-                }*/
+                }
 
             }
 
@@ -578,15 +578,11 @@ public class ShellActivity extends Activity implements PermissionInterface {
 
             public void run() {
                 try {
-                    Log.i(TAG, "loadGame ####################################################### ");
-                    Intent testPay = new Intent(ShellActivity.this, KoiLoginActivity.class);
-                    ShellActivity.this.startActivity(testPay);
-/*
                     final Bundle paramBundle = new Bundle();
                     JSONObject initConfig = new JSONObject();
-                    paramBundle.putString("source", "youle"); // source
+                    paramBundle.putString("source", "youle"); // sourceK
                     paramBundle.putString("channel", "youle"); // channel
-                    paramBundle.putString("platHost", HConstant.PLATFORM_HOST); // 平台服务器地址
+                    paramBundle.putString("platHost", KConstant.PLATFORM_HOST); // 平台服务器地址
                     paramBundle.putString("workDir", workDir
                             + KMetaData.GameCode + "/"); // 游戏包（so和asserts）存放路径
                     paramBundle.putString("gameVersion",
@@ -597,7 +593,7 @@ public class ShellActivity extends Activity implements PermissionInterface {
                             String.valueOf(KMetaData.VersionName)); // Apk包VersionName
                     paramBundle.putString("gameAreas",
                             loginInfo.gameAreaPropses); // 分区列表
-                    paramBundle.putString("sysInfos", generateJosnSystemInfos());
+                    //paramBundle.putString("sysInfos", generateJosnSystemInfos());
                     paramBundle.putString("initConfig", initConfig.toString());
                     paramBundle.putString("userInfos", generateJsonUserInfos()); // 用户信息
                     paramBundle.putString("appkey", AndroidUtils.instance()
@@ -609,8 +605,8 @@ public class ShellActivity extends Activity implements PermissionInterface {
                     ConnectionBuilder.userConnection.onloadGame();
                     isEnterGame = true;
 
-                    Log.i("myInfos", generateJosnSystemInfos());
-*/
+                    //Log.i("myInfos", generateJosnSystemInfos());
+
                    // return;
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -695,13 +691,11 @@ public class ShellActivity extends Activity implements PermissionInterface {
                 KUserSession.instance().getUserInfo().setAreaCode(areaId);
                 KUserSession.instance().getUserInfo().setAreaName(areaName);
                 PreferenceUtils.instance().putInt("areaId", areaId);
-                Log.i("myinfos", "onAreaSelected accessToken = " + accessToken);
                 try {
                     // 从平台服务器获取用户信息
                     JSONObject obj = WebApiImpl.instance().getUserRoleInfo(uid,
                             accessToken);
                     JSONObject dataJson = JSONUtils.getJSONObject(obj, "data");
-                    Log.i("myinfos", "onAreaSelected getUserRoleInfo = " + obj.toString());
                     int roleId = JSONUtils.getInt(dataJson, "roleId");
                     String roleName = JSONUtils.getString(dataJson, "roleName");
                     if (roleName == null) {
@@ -712,7 +706,6 @@ public class ShellActivity extends Activity implements PermissionInterface {
                     String areaCode = JSONUtils.getString(dataJson, "areaId");
                     String createRoleTime = JSONUtils.getString(dataJson, "createTime");
 
-                    Log.i("myinfos", "dataJson :" + dataJson);
                     String loginSign = "loginSign";
 
                     KUserSession.instance().getUserInfo().setRoleId(String.valueOf(roleId));
@@ -775,7 +768,6 @@ public class ShellActivity extends Activity implements PermissionInterface {
      */
     public void checkRoleName(Bundle bundle) {
         final String roleName = bundle.getString("roleName").trim();
-        Log.i("roleName", "Name:" + roleName);
         new Thread() {
 
             @Override
@@ -838,8 +830,8 @@ public class ShellActivity extends Activity implements PermissionInterface {
             if (null != mDlgVideoPlay) {
                 mDlgVideoPlay.dismiss();
             }
-            /*mDlgVideoPlay = new VideoDialog(JNIActivity, ShellActivity.this, workDir,
-                    videoName, R.style.Dialog_Fullscreen);*/
+            mDlgVideoPlay = new VideoDialog(JNIActivity, ShellActivity.this, workDir,
+                    videoName, RUtils.getStyle("Dialog_Fullscreen"));
             mDlgVideoPlay.requestWindowFeature(Window.FEATURE_NO_TITLE);
             mDlgVideoPlay.getWindow().setLayout(LayoutParams.FILL_PARENT,
                     LayoutParams.FILL_PARENT);
@@ -876,7 +868,7 @@ public class ShellActivity extends Activity implements PermissionInterface {
         }
         if (flag) {
             String url = KConstant.URL + "/game/getAnnounce?gameId="
-                    + 27 + "&siteId=" + ResourceUtils.getInstance().getSiteResouceId(KMetaData.Site) + "&areaCode=" + areaId + "&notifyType=" + type;
+                    + 27 + "&siteId=" + PlatformUtils.getInstance().getSiteResouceId(KMetaData.Site) + "&areaCode=" + areaId + "&notifyType=" + type;
 
             Log.e(TAG, url);
 
@@ -983,16 +975,14 @@ public class ShellActivity extends Activity implements PermissionInterface {
      * @param bundle
      */
     public void onSwitchAccount(Bundle bundle) {
-       // ConnectionBuilder.userConnection.logout(this, JNIActivity);
+       ConnectionBuilder.userConnection.logout(this);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK ) {
-            Log.i(TAG, "KEYCODE_BACK");
-            if (isEnterGame) {
-               // ConnectionBuilder.userConnection.logout(this, JNIActivity);
-            }
+               ConnectionBuilder.userConnection.exit();
+
         }
         return false;
     }
@@ -1215,7 +1205,7 @@ public class ShellActivity extends Activity implements PermissionInterface {
         super.onResume();
         if (!isStart) {
             isGamePause = true;
-           // JNIActivity.onResume();
+           JNIActivity.onResume();
         }
         lastClickTime = 0;
 
@@ -1227,7 +1217,7 @@ public class ShellActivity extends Activity implements PermissionInterface {
     protected void onPause() {
         super.onPause();
         if (!isPause) {
-           // JNIActivity.onPause();
+            JNIActivity.onPause();
         }
         ConnectionBuilder.onPause();
 
@@ -1237,7 +1227,7 @@ public class ShellActivity extends Activity implements PermissionInterface {
     protected void onStop() {
         super.onStop();
         ConnectionBuilder.onStop();
-        //JNIActivity.onStop();
+        JNIActivity.onStop();
     }
 
     @Override
@@ -1245,7 +1235,7 @@ public class ShellActivity extends Activity implements PermissionInterface {
         Log.e(TAG, "onDestroy");
         super.onDestroy();
         ConnectionBuilder.onDestory();
-       // JNIActivity.onDestroy();
+       JNIActivity.onDestroy();
     }
     @Override
     protected void onRestart() {
@@ -1793,7 +1783,7 @@ public class ShellActivity extends Activity implements PermissionInterface {
         // TODO Auto-generated method stub
         super.onWindowFocusChanged(hasFocus);
         if (!isStart) {
-            //JNIActivity.onWindowFocusChanged(hasFocus);
+            JNIActivity.onWindowFocusChanged(hasFocus);
         }
     }
 

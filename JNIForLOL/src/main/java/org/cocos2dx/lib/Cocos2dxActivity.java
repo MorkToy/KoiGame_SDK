@@ -58,7 +58,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
     // Constants
     // ===========================================================
 
-    private final static String TAG = Cocos2dxActivity.class.getSimpleName();
+    private final static String TAG = "Cocos2dxActivity";
 
     // ===========================================================
     // Fields
@@ -262,8 +262,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
-        Log.d(TAG, "Cocos2dxActivity onCreate: " + this + ", savedInstanceState: " + savedInstanceState);
-        super.onCreate(savedInstanceState);
+        Log.i(TAG, "Cocos2dxActivity onCreate: " + this + ", savedInstanceState: " + savedInstanceState);
 
         // Workaround in https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
         if (!isTaskRoot()) {
@@ -275,11 +274,11 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
             return;
         }
 
-        this.hideVirtualButton();
+        //this.hideVirtualButton();
 
         CAAgent.enableDebug(false);
 
-        onLoadNativeLibraries();
+        //onLoadNativeLibraries();
 
         sContext = this;
         this.mHandler = new Cocos2dxHandler(mainActivity);
@@ -303,7 +302,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
 
         Window window = mainActivity.getWindow();
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        mainActivity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
     //native method,call GLViewImpl::getGLContextAttrs() to get the OpenGL ES context attributions
@@ -319,17 +318,15 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
 
     @Override
     protected void onResume() {
-    	Log.d(TAG, "onResume()");
-        super.onResume();
+    	Log.i(TAG, "onResume()");
         Cocos2dxAudioFocusManager.registerAudioFocusListener(this);
-        this.hideVirtualButton();
+        //this.hideVirtualButton();
        	resumeIfHasFocus();
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-    	Log.d(TAG, "onWindowFocusChanged() hasFocus=" + hasFocus);
-        super.onWindowFocusChanged(hasFocus);
+    	Log.i(TAG, "onWindowFocusChanged() hasFocus=" + hasFocus);
         
         this.hasFocus = hasFocus;
         resumeIfHasFocus();
@@ -337,7 +334,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
 
     private void resumeIfHasFocus() {
         if(hasFocus) {
-            this.hideVirtualButton();
+            //this.hideVirtualButton();
             Cocos2dxHelper.onResume();
             mGLSurfaceView.onResume();
         }
@@ -346,15 +343,14 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
     @Override
     protected void onPause() {
         Log.d(TAG, "onPause()");
-        super.onPause();
-        Cocos2dxAudioFocusManager.unregisterAudioFocusListener(this);
+        Cocos2dxAudioFocusManager.unregisterAudioFocusListener(mainActivity);
         Cocos2dxHelper.onPause();
         mGLSurfaceView.onPause();
     }
 
     @Override
     protected void onDestroy() {
-        Cocos2dxAudioFocusManager.unregisterAudioFocusListener(this);
+        Cocos2dxAudioFocusManager.unregisterAudioFocusListener(mainActivity);
         CAAgent.onDestroy();
         super.onDestroy();
 
@@ -461,7 +457,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
                     | SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
                     | SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
                     | SYSTEM_UI_FLAG_IMMERSIVE_STICKY};
-            Cocos2dxReflectionHelper.<Void>invokeInstanceMethod(getWindow().getDecorView(),
+            Cocos2dxReflectionHelper.<Void>invokeInstanceMethod(mainActivity.getWindow().getDecorView(),
                     "setSystemUiVisibility",
                     new Class[]{Integer.TYPE},
                     parameters);

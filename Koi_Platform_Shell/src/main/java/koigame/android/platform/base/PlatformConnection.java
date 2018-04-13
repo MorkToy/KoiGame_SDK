@@ -3,6 +3,7 @@ package koigame.android.platform.base;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,6 +32,7 @@ import koigame.sdk.api.KWebApiImpl;
 import koigame.sdk.bean.pay.KPayInfo;
 import koigame.sdk.bean.user.KUserSession;
 import koigame.sdk.util.RUtils;
+import koigame.sdk.view.dialog.KoiLogoutDailog;
 
 import static koigame.android.platform.base.ConnectionBuilder.TAG;
 
@@ -135,7 +137,7 @@ public abstract class PlatformConnection {
     /**
      * 登出
      */
-    public void logout(final Activity activity, final JNIActivity jniActivity) {
+    public void logout(final Activity activity) {
         activity.runOnUiThread(new Runnable() {
 
             @Override
@@ -258,25 +260,18 @@ public abstract class PlatformConnection {
     public void exit() {
         mainActivity.runOnUiThread(new Runnable() {
             public void run() {
-                String title = mainActivity.getResources().getString(RUtils.getStringId("hl_tip_title"));
-                String message = mainActivity.getResources().getString(RUtils.getStringId("hl_quit_question"));
-                String positiveButtonTip = mainActivity.getResources().getString(RUtils.getStringId("hl_confirm"));
-                String negativeButtonTip = mainActivity.getResources().getString(RUtils.getStringId("hl_cancle"));
+                KoiLogoutDailog dailog = new KoiLogoutDailog(mainActivity, RUtils.getStyle("koi_dialog"), "确定要退出游戏吗?", new KoiLogoutDailog.OnCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog, boolean confirm) {
+                        if (confirm) {
+                            destoryGame();
+                        } else {
+                            dialog.cancel();
+                        }
 
-                AlertDialog mExitDialog = new AlertDialog.Builder(mainActivity).setTitle(title).setMessage(message)
-                        .setPositiveButton(positiveButtonTip, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                notifyLogout();
-                                dialog.dismiss();
-
-                            }
-                        }).setNegativeButton(negativeButtonTip, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        }).create();
-
-                mExitDialog.show();
+                    }
+                });
+                dailog.show();
             }
         });
     }

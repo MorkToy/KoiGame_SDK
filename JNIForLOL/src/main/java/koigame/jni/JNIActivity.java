@@ -257,18 +257,18 @@ public class JNIActivity extends Cocos2dxActivity {
             String roleName = null;
             int roleId = 0;
             switch (eventType) {
-                case 1:
+                case 1://玩家选完区服后调用
                     props = JSONUtils.build(paramCode);
                     int areaId = JSONUtils.getInt(props, "areaId", 1);
                     areaName = JSONUtils.getString(props, "areaName");
                     onAreaSelected(areaId, areaName);
                     break;
-                case 2:
+                case 2://玩家输入完角色名后通知平台
                     props = JSONUtils.build(paramCode);
                     roleName = JSONUtils.getString(props, "roleName");
                     checkRoleName(roleName);
                     break;
-                case 3:
+                case 3://分享，(可选)
                     props = JSONUtils.build(paramCode);
                     int shareType = JSONUtils.getInt(props, "shareType");
                     String picture = JSONUtils.getString(props, "picture");
@@ -281,66 +281,66 @@ public class JNIActivity extends Cocos2dxActivity {
                 case 4:
                     onPromoteCode(1);
                     break;
-                case 5:
+                case 5://打开用户中心(可选)
                     onOpenMemberCenter();
                     break;
-                case 6:
+                case 6://支付
                     onPay(paramCode);
                     break;
                 case 7:
                     onPayFinished();
                     break;
-                case 8:
+                case 8://玩家退出游戏的时候调用
                     onExit();
                     break;
-                case 9:
+                case 9://打开网页,比如公告(可选)
                     showWebView(paramCode);
                     break;
-                case 10:
+                case 10://关闭网页(可选)
                     closeWebView();
                     break;
-                case 11:
+                case 11://判断玩家是否连接wifi(可选)
                     isWifiConnected();
                     break;
-                case 12:
+                case 12://公告(可选)
                     showAnnounce(paramCode);
                     break;
-                case 13:
+                case 13://崩溃日志记录(可选)
                     onCrash(paramCode);
                     break;
                 case 14:
                     noticeAvailMem();
                     break;
-                case 15:
+                case 15://自定义接口，直接连平台服务器(可选)
                     props = JSONUtils.build(paramCode);
                     String action = JSONUtils.getString(props, "action");
                     serverPipeline(action);
                     break;
-                case 16:
+                case 16://切换账号(可选)
                     onSwitchAccount();
                     break;
-                case 17:
+                case 17://玩家角色升级调用(可选)
                     props = JSONUtils.build(paramCode);
                     level = JSONUtils.getInt(props, "level");
                     onLevelUp(level);
                     break;
-                case 18:
+                case 18://玩家购买游戏内商品(可选)
                     props = JSONUtils.build(paramCode);
                     String item = JSONUtils.getString(props, "item");
                     int itemNumber = JSONUtils.getInt(props, "itemNumber");
                     Double priceInVirtualCurrency = JSONUtils.getDouble(props, "priceInVirtualCurrency");
                     onPurchase(item, itemNumber, priceInVirtualCurrency);
                     break;
-                case 19:
+                case 19://(可选)
                     props = JSONUtils.build(paramCode);
                     double virtualCurrencyAmount = JSONUtils.getDouble(props, "virtualCurrencyAmount");
                     String reason = JSONUtils.getString(props, "reason");
                     onReward(virtualCurrencyAmount, reason);
                     break;
-                case 20:
+                case 20://获取商品列表
                     getProductConfigs();
                     break;
-                case 21:
+                case 21://进入到游戏主界面的时候，调用
                     props = JSONUtils.build(paramCode);
                     int actionId = JSONUtils.getInt(props, "actionId");
                     level = JSONUtils.getInt(props, "roleLevel");
@@ -352,102 +352,102 @@ public class JNIActivity extends Cocos2dxActivity {
                     Log.i("jni", props.toString());
                     onEnterGame(actionId, level, roleId, roleName, moneyNum, vipLevel, gem);
                     break;
-                case 22:
+                case 22://(可选)
                     props = JSONUtils.build(paramCode);
                     int act = JSONUtils.getInt(props, "action");
                     String missionId = JSONUtils.getString(props, "missionId");
                     String cause = JSONUtils.getString(props, "cause");
                     duplicateInfo(act, missionId, cause);
                     break;
-                case 23:
+                case 23://让手机屏幕不熄灯(可选)
                     lightScreenON();
                     break;
-                case 24:
+                case 24://(可选)
                     lightScreenOFF();
                     break;
-                case 25:
+                case 25://重启游戏(可选)
                     restartApp();
                     break;
-                case 26:
+                case 26://播放CG视频(可选)
                     props = JSONUtils.build(paramCode);
                     boolean isPlay = JSONUtils.getBoolean(props, "isPlay");
                     String path = JSONUtils.getString(props, "path");
                     boolean isHalfPlay = JSONUtils.getBoolean(props, "isHalfPlay");
                     openVideo(isPlay, path, isHalfPlay);
                     break;
-                case 27:
+                case 27://三方统计埋点事件(可选)
                     props = JSONUtils.build(paramCode);
                     String event = JSONUtils.getString(props, "Event");
                     String value = JSONUtils.getString(props, "eventData");
                     talkingEvent(event, value);
                     break;
-                case 28://修改头像
+                case 28://修改头像(可选)
                     props = JSONUtils.build(paramCode);
                     String roleHead = JSONUtils.getString(props, "roleHead");
                     changeRoleHead(roleHead);
                     break;
-                case 29:
+                case 29://(可选)
                     props = JSONUtils.build(paramCode);
                     String webUrl = JSONUtils.getString(props, "webUrl");
                     JumpToWeb(webUrl);
                     break;
 
-                case 30:
+                case 30://内测返利(可选)
                     props = JSONUtils.build(paramCode);
                     String role = JSONUtils.getString(props, "roleId");
                     OBDoubleMoney(role);
                     break;
 
-                case 31:
+                case 31://(忽略)
                     tencentCommunity();
                     break;
 
-                case 100:
+                case 100://获取渠道名称
                     return getGameSource();
 
-                case 101:
+                case 101://获取渠道名称(可选)
                     return getChannel();
 
                 case 102:
                     return getAppKey();
 
-                case 103:
+                case 103://获取平台域名(可选)
                     return getPlatHostName();
 
-                case 104:
+                case 104://获取补丁资源目录
                     return getResPath();
 
-                case 105:
+                case 105://获取平台大版本号
                     return getAppVersion();
 
-                case 106:
+                case 106://获取补丁版本号
                     return getResVersion();
 
-                case 107:
+                case 107://获取SDK版本号(可选)
                     return getSDKVersion();
 
-                case 108:
+                case 108://获取区服信息
                     return getGameAreas();
 
-                case 109:
+                case 109://获取用户信息
                     return getUserInfos();
 
-                case 110:
+                case 110://可选
                     return getInitConfig();
 
-                case 111:
+                case 111://可选
                     return getLocaleInfo();
 
-                case 112:
+                case 112://获取手机设备信息(可选)
                     return getSystemInfos();
 
-                case 113:
+                case 113://获取公告内容
                     return getWorldAnnounce();
 
-                case 114:
+                case 114://忽略
                     return  "0";
 
-                case 115:
+                case 115://玩家封测期间充值的金额，首冲双倍用(可选)
                     return getChargeMoney();
 
                 default:

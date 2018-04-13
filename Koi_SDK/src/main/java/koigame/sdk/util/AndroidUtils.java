@@ -126,13 +126,7 @@ public class AndroidUtils {
 	}
 
 	/**
-	 * 显示处理等待框
-	 * 
-	 * @param activity
-	 * @param title
-	 * @param message
-	 * @param indeterminate
-	 * @param cancelable
+	 * 显示处理等待框.
 	 */
 	public static void showProgress(final Activity activity, final CharSequence title, final CharSequence message,
 			final boolean indeterminate, final boolean cancelable, final KThread progressThread) {
@@ -192,11 +186,7 @@ public class AndroidUtils {
 	}
 
 	/**
-	 * 提示
-	 * 
-	 * @param activity
-	 * @param message
-	 * @param type
+	 * 提示.
 	 */
 	public static void showToast(final Activity activity, final String message, final int type) {
 		activity.runOnUiThread(new Runnable() {
@@ -211,10 +201,7 @@ public class AndroidUtils {
 	}
 
 	/**
-	 * 生成设备号
-	 * 
-	 * @param ctx
-	 * @return
+	 * 生成设备号.
 	 */
 	public String fetchUdid(Context ctx) {
 //		String udid = "";
@@ -245,11 +232,7 @@ public class AndroidUtils {
 	}
 
 	/**
-	 * 获得meta数据
-	 * 
-	 * @param ctx
-	 * @param key
-	 * @return
+	 * 获得meta数据.
 	 */
 	public String getMetaData(Context ctx, String key) {
 		ApplicationInfo ai;

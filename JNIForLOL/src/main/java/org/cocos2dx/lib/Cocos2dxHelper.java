@@ -31,11 +31,13 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.os.Vibrator;
 import android.preference.PreferenceManager.OnActivityResultListener;
 import android.util.DisplayMetrics;
@@ -43,8 +45,14 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
+import com.android.vending.expansion.zipfile.APKExpansionSupport;
+import com.android.vending.expansion.zipfile.ZipResourceFile;
+
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
@@ -81,7 +89,7 @@ public class Cocos2dxHelper {
     private static String sAssetsPath = "";
     
     // The OBB file
-   // private static ZipResourceFile sOBBFile = null;
+    private static ZipResourceFile sOBBFile = null;
 
     // ===========================================================
     // Constructors
@@ -153,11 +161,11 @@ public class Cocos2dxHelper {
             } catch (NameNotFoundException e) {
                 e.printStackTrace();
             }
-            /*try {
+            try {
                 Cocos2dxHelper.sOBBFile = APKExpansionSupport.getAPKExpansionZipFile(Cocos2dxActivity.getContext(), versionCode, 0);
             } catch (IOException e) {
                 e.printStackTrace();
-            }*/
+            }
         }
     }
     
@@ -183,10 +191,10 @@ public class Cocos2dxHelper {
         return Cocos2dxHelper.sAssetsPath;
     }
     
-   /* public static ZipResourceFile getObbFile()
+    public static ZipResourceFile getObbFile()
     {
         return Cocos2dxHelper.sOBBFile;
-    }*/
+    }
     
     public static Activity getActivity() {
         return sActivity;
@@ -291,7 +299,7 @@ public class Cocos2dxHelper {
         return ret;
     }
     
-    /*public static long[] getObbAssetFileDescriptor(final String path) {
+    public static long[] getObbAssetFileDescriptor(final String path) {
         long[] array = new long[3];
         if (Cocos2dxHelper.sOBBFile != null) {
             AssetFileDescriptor descriptor = Cocos2dxHelper.sOBBFile.getAssetFileDescriptor(path);
@@ -312,7 +320,7 @@ public class Cocos2dxHelper {
             }
         }
         return array;
-    }*/
+    }
 
     public static void preloadBackgroundMusic(final String pPath) {
         Cocos2dxHelper.sCocos2dMusic.preloadBackgroundMusic(pPath);
