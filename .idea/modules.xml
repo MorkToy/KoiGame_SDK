@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndriodShellForYW/AndriodShellForYW.iml" filepath="$PROJECT_DIR$/AndriodShellForYW/AndriodShellForYW.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JNIForLOL/JNIForLOL.iml" filepath="$PROJECT_DIR$/JNIForLOL/JNIForLOL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KoiGame_SDK.iml" filepath="$PROJECT_DIR$/KoiGame_SDK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Koi_Demo/Koi_Demo.iml" filepath="$PROJECT_DIR$/Koi_Demo/Koi_Demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Koi_Platform_Shell/Koi_Platform_Shell.iml" filepath="$PROJECT_DIR$/Koi_Platform_Shell/Koi_Platform_Shell.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Koi_SDK/Koi_SDK.iml" filepath="$PROJECT_DIR$/Koi_SDK/Koi_SDK.iml" />
+      <module fileurl="file://E:\android\mvp\KoiGame_SDK\Koi_SDK\app.iml" filepath="E:\android\mvp\KoiGame_SDK\Koi_SDK\app.iml" />
+      <module fileurl="file://E:\android\mvp\KoiGame_SDK\Koi_Demo\sdkdemo.iml" filepath="E:\android\mvp\KoiGame_SDK\Koi_Demo\sdkdemo.iml" />
+    </modules>
+  </component>
+</project>
